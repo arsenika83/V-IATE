@@ -1,3 +1,4 @@
+
 plugins {
 	java
 	id("org.springframework.boot") version "3.5.7"
@@ -14,6 +15,10 @@ java {
 	}
 }
 
+springBoot {
+	mainClass = "app\\src\\main\\java\\com\\AVASPP\\VIATE\\VIATEApplication.java"
+}
+
 repositories {
 	mavenCentral()
 }
@@ -25,6 +30,25 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+sourceSets {
+	main {
+		java {
+			setSrcDirs(listOf(
+				"app/src/main/java/com/AVASPP/VIATE",
+				"app/src/main/java/com/AVASPP/VIATE/entity/user",
+				"app/src/main/java/com/AVASPP/VIATE/repository",
+				"app/src/main/java/com/AVASPP/VIATE/service",
+				"app/src/main/java/com/AVASPP/VIATE/controller"
+			))
+		}
+	}
+	test {
+		java {
+			setSrcDirs(listOf("src/testJavaDir"))
+		}
+	}
 }
 
 tasks.withType<Test> {
