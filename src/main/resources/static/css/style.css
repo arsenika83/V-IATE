@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'FindSans Pro Light';
+  src: url('gromkodigital.ru');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Использование шрифта */
+body {
+  font-family: 'FindSans Pro Light', FindSans Pro Light, sans-serif;
+}
+
+body {
+    background: #3366CC;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}

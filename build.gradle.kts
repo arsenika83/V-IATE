@@ -16,7 +16,7 @@ java {
 }
 
 springBoot {
-	mainClass = "app\\src\\main\\java\\com\\AVASPP\\VIATE\\VIATEApplication.java"
+	mainClass = "src\\main\\java\\com\\AVASPP\\VIATE\\VIATEApplication.java"
 }
 
 repositories {
@@ -24,8 +24,9 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-security")
+	//implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
@@ -36,11 +37,11 @@ sourceSets {
 	main {
 		java {
 			setSrcDirs(listOf(
-				"app/src/main/java/com/AVASPP/VIATE",
-				"app/src/main/java/com/AVASPP/VIATE/entity/user",
-				"app/src/main/java/com/AVASPP/VIATE/repository",
-				"app/src/main/java/com/AVASPP/VIATE/service",
-				"app/src/main/java/com/AVASPP/VIATE/controller"
+				"src/main/java/com/AVASPP/VIATE",
+				"src/main/java/com/AVASPP/VIATE/entity/user",
+				"src/main/java/com/AVASPP/VIATE/repository",
+				"src/main/java/com/AVASPP/VIATE/service",
+				"src/main/java/com/AVASPP/VIATE/controller"
 			))
 		}
 	}
