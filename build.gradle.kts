@@ -25,9 +25,15 @@ repositories {
 
 dependencies {
 	//implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+
 	runtimeOnly("org.postgresql:postgresql")
+
+	compileOnly("org.projectlombok:lombok:1.18.30")
+	annotationProcessor("org.projectlombok:lombok:1.18.30")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -38,7 +44,7 @@ sourceSets {
 		java {
 			setSrcDirs(listOf(
 				"src/main/java/com/AVASPP/VIATE",
-				"src/main/java/com/AVASPP/VIATE/entity/user",
+				"src/main/java/com/AVASPP/VIATE/entity",
 				"src/main/java/com/AVASPP/VIATE/repository",
 				"src/main/java/com/AVASPP/VIATE/service",
 				"src/main/java/com/AVASPP/VIATE/controller"
@@ -47,7 +53,7 @@ sourceSets {
 	}
 	test {
 		java {
-			setSrcDirs(listOf("src/testJavaDir"))
+			setSrcDirs(listOf("src/test"))
 		}
 	}
 }

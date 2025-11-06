@@ -1,10 +1,7 @@
 package com.AVASPP.VIATE;
 
-import com.AVASPP.VIATE.entity.user.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 @SpringBootApplication
 public class VIATEApplication {

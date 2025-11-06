@@ -1,4 +1,4 @@
-package com.VIATE.VIATE;
+package com.AVASPP.VIATE;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
