@@ -16,7 +16,7 @@ java {
 }
 
 springBoot {
-	mainClass = "src\\main\\java\\com\\AVASPP\\VIATE\\VIATEApplication.java"
+	mainClass = "src/main/java/com/AVASPP/VIATE/VIATEApplication.java"
 }
 
 repositories {
