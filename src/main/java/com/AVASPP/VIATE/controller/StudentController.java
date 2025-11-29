@@ -1,21 +1,21 @@
 package com.AVASPP.VIATE.controller;
 
-import com.AVASPP.VIATE.entity.Profile;
-import com.AVASPP.VIATE.service.ProfileService;
+import com.AVASPP.VIATE.entity.Student;
+import com.AVASPP.VIATE.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class ProfileController {
+public class StudentController {
 
     @Autowired
-    private ProfileService profileService;
+    private StudentService studentService;
 
     @GetMapping("/profile/{id}")
     public String profile(Model model, @PathVariable Long id) {
-        Profile profile = profileService.save(id);
+        Student profile = studentService.save(id);
 
         model.addAttribute("profile", profile);
 

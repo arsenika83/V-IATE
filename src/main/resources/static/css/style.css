@@ -1,29 +1,174 @@
 @font-face {
-  font-family: 'FindSans Pro Light';
-  src: url('gromkodigital.ru');
-  font-weight: normal;
-  font-style: normal;
-}
-
-/* Использование шрифта */
-body {
-  font-family: 'FindSans Pro Light', FindSans Pro Light, sans-serif;
+    /*font-family: 'FindSans Pro Light';*/
+    src: url('gromkodigital.ru');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {
-    background: grey;
-    color: white;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 1;
+    font-style: normal;
+    background: #F5F5F5;
 }
 
-h1 {
-    color: white;
+form {
+    text-align: center;
+    border: 3px solid #f1f1f1;
+    width: 500px;
+    height: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 20px;
+}
+p {
+    text-align: left;
+    margin: 8px 0px 0px 0px;
+}
+
+img {
     text-align: center;
 }
 
-h2 {
-    color: white;
+.course {
+    padding: 10px 0;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 10;
+    font-style: normal;
+    text-align: center;
 }
 
-li {
+.groups-align {
+    justify-content: center;
+}
+
+.button-header {
+    display: inline-block;
+    padding: 10px 0px 10px 0px;
+    background-color: transparent;
     color: white;
+    text-decoration: none;
+    font-weight: 30;
+    margin: 5px 0px 5px 5px;
+    cursor: pointer;
+    text-align: left;
+    width: 80px;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+
+.button-header:hover  {
+    transform: scale(1.2);
+}
+
+.buttons-group {
+    gap: 15px;
+    text-align: center;
+    margin: 10px 0px 10px 0px;
+}
+.flex-buttons {
+
+    align-items: center;
+    align-content: center;
+}
+
+.button-href {
+    align-items: center;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: black;
+    text-decoration: none;
+    border-radius: 15px;
+    border: 2px solid #212529;
+    margin: 5px 0px 5px 0px;
+    cursor: pointer;
+    text-align: center;
+    width: 120px;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+
+.button-href:hover  {
+    background-color: #212529;
+    border: 2px solid white;
+    color: white;
+    transform: scale(1.1);
+}
+
+.schedule {
+    display: grid;
+    justify-content: center;
+}
+
+.empty-check {
+    width: 800px;
+}
+
+.day-of-week {
+    align-self: center;
+    border: 2px solid #0056b3;
+    padding: 5px 10px 5px 10px;
+    margin: 20px 10px 20px 10px;
+    width: 800px;
+}
+
+.lesson {
+    border: 2px solid grey;
+    padding: 5px 10px 5px 10px;
+    margin: 5px 0px 5px 0px;
+}
+
+.container-time-teacher {
+    display: flex;
+    gap: 10px;
+    width: 400px;
+}
+
+.container-type-name {
+    display: flex;
+    gap: 10px;
+    width: 800px;
+}
+
+.lesson-name {
+    padding: 10px 0;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 10;
+    font-style: normal;
+}
+
+.lesson-type {
+    padding: 10px 0;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 10;
+    font-style: normal;
+}
+
+.lesson-time {
+    padding: 10px 0;
+    align-items: left;
+    text-align: left;
+    font-family: "Roboto", sans-serif;
+    font-weight: 10;
+    font-style: normal;
+}
+
+.lesson-teacher {
+    padding: 10px 0;
+    align-items: left;
+    text-align: left;
+    font-family: "Roboto", sans-serif;
+    font-weight: 10;
+    font-style: normal;
 }
