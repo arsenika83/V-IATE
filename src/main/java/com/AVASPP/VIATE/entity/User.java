@@ -17,8 +17,11 @@ public class User {
     @Column(name="id")
     private Long id;
 
+    @Column(name = "login")
     private String login;
+    @Column(name = "password")
     private String password;
+    @Column(name = "full_name")
     private String[] full_name;
 
     public User(String login, String password, String[] full_name) {

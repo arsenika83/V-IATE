@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: my-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: VIATE
+      POSTGRES_USER: shepard
+      POSTGRES_PASSWORD: Semen10012006
+    ports:
+      - "5433:5432"
+    volumes:
+      # 1. Volume для данных
+      - postgres_data_v2:/var/lib/postgresql/data 
+      # 2. Init-скрипты (автоматически выполняются при ПЕРВОМ запуске)
+      - ./postgres/init:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres_data_v2:
