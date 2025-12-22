@@ -19,7 +19,7 @@
         <li><a href="/group" class="button-header">Расписание</a></li>
       </ul>
       <div class="text-end">
-        <button type="button" class="button-header"><a href="/login">Вход</a></button>
+        <a class="button-login" href="/login">Вход</a>
       </div>
     </div>
   </div>
@@ -28,12 +28,9 @@
 <div class="groups-align" th:each="course : ${courses}">
   <h2 class="course" th:text="${course} + ' КУРС'"></h2>
   <div class="buttons-group">
-    <div th:each="i : ${group_number_skip}">
+    <div th:each="group : ${groups_list.get(course-1)}">
       <div class="flex-buttons">
-        <a class="button-href" th:href="@{/schedule/{id} (id = ${groups[i].id})}" th:text="${groups[i].name}"></a>
-        <a class="button-href" th:href="@{/schedule/{id} (id = ${groups[i+1].id})}" th:text="${groups[i+1].name}"></a>
-        <a class="button-href" th:href="@{/schedule/{id} (id = ${groups[i+2].id})}" th:text="${groups[i+2].name}"></a>
-        <a class="button-href" th:href="@{/schedule/{id} (id = ${groups[i+3].id})}" th:text="${groups[i+3].name}"></a>
+        <a class="button-href" th:href="@{/schedule/{id} (id = ${group.id})}" th:text="${group.name}"></a>
       </div>
     </div>
   </div>

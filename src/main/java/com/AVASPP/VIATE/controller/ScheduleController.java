@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,25 +21,32 @@ public class ScheduleController {
 
     @GetMapping("/group")
     public String getGroupList(Model model) {
-        List<Group> groups = scheduleService.getAllGroups();
-        int length = groups.size();
-        int[] group_numbers = new int[length];
-        int[] group_numbers_skip = new int[length/4];
+        //List<Group> groups = scheduleService.getAllGroups();
+        long[] courses = {1, 2, 3, 4, 5, 6};
+        List<Group> groups1 = scheduleService.getAllGroupsWithCourse(1);
+        List<Group> groups2 = scheduleService.getAllGroupsWithCourse(2);
+        List<Group> groups3 = scheduleService.getAllGroupsWithCourse(3);
+        List<Group> groups4 = scheduleService.getAllGroupsWithCourse(4);
+        List<Group> groups5 = scheduleService.getAllGroupsWithCourse(5);
+        List<Group> groups6 = scheduleService.getAllGroupsWithCourse(6);
 
-        int count = 0;
-        for (int i = 0; i < length; i++) {
-            group_numbers[i] = i;
-            if(i % 4 == 0) {
-                group_numbers_skip[count] = i;
-                count++;
-            }
+        List<List<Group>> groups_list = new ArrayList<>();
+        groups_list.add(groups1);
+        groups_list.add(groups2);
+        groups_list.add(groups3);
+        groups_list.add(groups4);
+        groups_list.add(groups5);
+
+        System.out.println(groups5.size() + " SIZE");
+
+        for (int i = 0; i < groups5.size(); i++) {
+            System.out.println(groups5.get(i).getName());
         }
 
-        long[] courses = {1, 2, 3, 4, 5, 6};
+        groups_list.add(groups6);
 
         model.addAttribute("courses", courses);
-        model.addAttribute("groups", groups);
-        model.addAttribute("group_number_skip", group_numbers_skip);
+        model.addAttribute("groups_list", groups_list);
 
         return "group";
     }

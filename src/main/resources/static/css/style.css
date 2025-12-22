@@ -67,6 +67,26 @@ img {
     transform: scale(1.2);
 }
 
+.button-login {
+    display: inline-block;
+    padding: 10px 0px 10px 0px;
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+    margin: 5px 0px 5px 5px;
+    border-radius: 10px;
+    border: 2px solid white;
+    cursor: pointer;
+    text-align: center;
+    width: 100px;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+
+.button-login:hover  {
+    transform: scale(1.2);
+}
+
 .buttons-group {
     gap: 15px;
     text-align: center;
@@ -114,9 +134,30 @@ img {
 .day-of-week {
     align-self: center;
     border: 2px solid #0056b3;
+    border-radius: 10px;
     padding: 5px 10px 5px 10px;
     margin: 20px 10px 20px 10px;
     width: 800px;
+}
+
+.day-of-week-tilted-left {
+    align-self: center;
+    border: 2px solid #0056b3;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    margin: 20px 10px 20px 10px;
+    width: 800px;
+    transform: perscpective(3000px) rotateZ(-45) scale(0.8);
+}
+
+.day-of-week-tilted-right {
+    align-self: center;
+    border: 2px solid #0056b3;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    margin: 20px 10px 20px 10px;
+    width: 800px;
+    transform: perscpective(3000px) rotateZ(45) scale(0.8);
 }
 
 .lesson {

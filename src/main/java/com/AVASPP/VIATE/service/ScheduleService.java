@@ -58,6 +58,11 @@ public class ScheduleService {
         return groupService.getAllGroups();
     }
 
+    public List<Group> getAllGroupsWithCourse(int course) {
+
+        return groupService.getAllGroupsWithCourse(course);
+    }
+
     public String getGroupNameById(long id) {
         return groupService.getGroupNameById(id);
     }

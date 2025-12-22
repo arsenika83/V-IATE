@@ -5,6 +5,7 @@ import com.AVASPP.VIATE.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,16 +23,14 @@ public class GroupService {
         return (List<Group>) groupRepository.findAll();
     }
 
-    public String getGroupNameById(long id) {
-        return groupRepository.findById(id).get().getName();
+    public List<Group> getAllGroupsWithCourse(int course) {
+        int year = LocalDateTime.now().getYear() % 100; //последние 2 цифры текущего года
+        year -= (course - 1);
+
+        return (List<Group>) groupRepository.findAllByCourse(year);
     }
 
-    public long CourseByGroupName(String name) {
-        long course = 0;
-        if(name.contains("25")) {
-            course = 1;
-        }
-
-        return course;
+    public String getGroupNameById(long id) {
+        return groupRepository.findById(id).get().getName();
     }
 }
