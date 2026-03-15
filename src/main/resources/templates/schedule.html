@@ -19,7 +19,8 @@
                 <li><a href="/group" class="button-header">Расписание</a></li>
             </ul>
             <div class="text-end">
-                <a class="button-login" href="/login">Вход</a>
+                <a th:if="${user_name == null}" class="button-login" href="/login">Вход</a>
+                <a th:if="${user_name != null}" class="button-login" href="/profile">Профиль</a>
             </div>
         </div>
     </div>

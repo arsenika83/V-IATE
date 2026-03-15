@@ -20,6 +20,6 @@ public class UserController {
 
     @PostMapping("/user/name")
     public User postUser(@PathVariable String name) {
-        return userService.save(new User(name, name, new String[] {name}));
+        return userService.save(new User(name, name, new String[] {name}, "STUDENT"));
     }
 }

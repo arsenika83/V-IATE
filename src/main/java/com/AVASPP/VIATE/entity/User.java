@@ -23,11 +23,14 @@ public class User {
     private String password;
     @Column(name = "full_name")
     private String[] full_name;
+    @Column(name = "role")
+    private String role;
 
-    public User(String login, String password, String[] full_name) {
+    public User(String login, String password, String[] full_name, String role) {
         this.login = login;
         this.password = password;
         this.full_name = full_name;
+        this.role = role;
     }
     public User() {}
 }

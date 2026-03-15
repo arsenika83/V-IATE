@@ -16,10 +16,10 @@ import java.util.Optional;
 public class LoginController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userService;
 
-    @GetMapping("/")
-    public String showLoginPage(Model model) {
+    @GetMapping("/login")
+    public String loginPage() {
         return "login";
     }
 
@@ -29,15 +29,16 @@ public class LoginController {
                         HttpSession session,
                         Model model) {
 
-        Optional<User> userSearch = userRepository.findByLogin(login);
+        Optional<User> userSearch = userService.findByLogin(login);
 
         if ((userSearch.isPresent())) {
             User user = userSearch.get();
 
             if (password.equals(user.getPassword())) {
                 session.setAttribute("user", user);
+                model.addAttribute("user_name", user.getFull_name()[0]);
 
-                return "redirect:/index";
+                return "/index";
             } else {
                 model.addAttribute("error", "Неверный пароль");
             }
@@ -48,22 +49,9 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/index")
-    public String indexPage(HttpSession session, Model model){
-        User user = (User) session.getAttribute("user");
-
-        if (user == null){
-            return "redirect:/login";
-        }
-
-        model.addAttribute("login", user.getLogin());
-
-        return "index";
-    }
-
-    @GetMapping("/logout")
+    /*@GetMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();
         return "redirect:/login";
-    }
+    }*/
 }

@@ -19,7 +19,8 @@
         <li><a href="/group" class="button-header">Расписание</a></li>
       </ul>
       <div class="text-end">
-        <a class="button-login" href="/login">Вход</a>
+        <a th:if="${user_name == null}" class="button-login" href="/login">Вход</a>
+        <a th:if="${user_name != null}" class="button-login" href="/profile">Профиль</a>
       </div>
     </div>
   </div>
@@ -30,7 +31,8 @@
   <div class="buttons-group">
     <div th:each="group : ${groups_list.get(course-1)}">
       <div class="flex-buttons">
-        <a class="button-href" th:href="@{/schedule/{id} (id = ${group.id})}" th:text="${group.name}"></a>
+        <a th:if="${student_group_id != group.id}" th:class="button-href" th:href="@{/schedule/{id} (id = ${group.id})}" th:text="${group.name}"></a>
+        <a th:if="${student_group_id == group.id}" th:class="test" th:href="@{/schedule/{id} (id = ${group.id})}" th:text="${group.name}"></a>
       </div>
     </div>
   </div>

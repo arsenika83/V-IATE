@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <link href="/css/style.css" rel="stylesheet">
@@ -19,7 +19,8 @@
                 <li><a href="/group" class="button-header">Расписание</a></li>
             </ul>
             <div class="text-end">
-                <a class="button-login" href="/login">Вход</a>
+                <a th:if="${user_name == null}" class="button-login" href="/login">Вход</a>
+                <a th:if="${user_name != null}" class="button-login" href="/profile">Профиль</a>
             </div>
         </div>
     </div>

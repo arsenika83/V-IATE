@@ -31,7 +31,7 @@ public class UserService {
         }
         else {
             String[] fn = {"AAA", "AAA", "AAA"};
-            userRepository.save(new User("AAA", "AAA", fn));
+            userRepository.save(new User("AAA", "AAA", fn, "STUDENT"));
             return null;
         }
 

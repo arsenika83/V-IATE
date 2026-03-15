@@ -1,9 +1,10 @@
 package com.AVASPP.VIATE.controller;
 
-import com.AVASPP.VIATE.entity.Group;
-import com.AVASPP.VIATE.entity.Lesson;
-import com.AVASPP.VIATE.entity.Schedule;
+import com.AVASPP.VIATE.entity.*;
+import com.AVASPP.VIATE.repository.StudentRepository;
 import com.AVASPP.VIATE.service.ScheduleService;
+import com.AVASPP.VIATE.service.StudentService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,16 +13,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ScheduleController {
 
     @Autowired
     private ScheduleService scheduleService;
+    @Autowired
+    private StudentService studentService;
 
     @GetMapping("/group")
-    public String getGroupList(Model model) {
+    public String getGroupList(HttpSession session, Model model) {
         //List<Group> groups = scheduleService.getAllGroups();
+
+        User user = (User) session.getAttribute("user");
+        if(user != null) {
+            model.addAttribute("user_name", user.getFull_name()[0]);
+            model.addAttribute("login", user.getLogin());
+
+            if(user.getRole().contains("STUDENT")) {
+                Student student = studentService.show(user.getId());
+                model.addAttribute("student_group_id", student.getGroup_id());
+            }
+
+        }
+
         long[] courses = {1, 2, 3, 4, 5, 6};
         List<Group> groups1 = scheduleService.getAllGroupsWithCourse(1);
         List<Group> groups2 = scheduleService.getAllGroupsWithCourse(2);
