@@ -23,6 +23,10 @@ public class GroupService {
         return (List<Group>) groupRepository.findAll();
     }
 
+    public Group findById(long id) {
+        return groupRepository.findById(id).get();
+    }
+
     public List<Group> getAllGroupsWithCourse(int course) {
         int year = LocalDateTime.now().getYear() % 100; //последние 2 цифры текущего года
         int offset = LocalDateTime.now().getMonth().getValue() < 9 ? 0 : 1; //проверка на четный семестр - Б25 всё ещё 1 курс в 2026 году

@@ -21,6 +21,14 @@ public class UserService {
         //this.userRepository.save(new User("111", "222", new String[] {"111", "222", "333"}));
     }
 
+    public User findById(long id) {
+        return userRepository.findById(id).get();
+    }
+
+    public Optional<User> findByLogin(String login) {
+        return userRepository.findByLogin(login);
+    }
+
     public User save(User user) {
         return userRepository.save(user);
     }

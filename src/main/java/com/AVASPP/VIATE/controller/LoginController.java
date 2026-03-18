@@ -2,6 +2,7 @@ package com.AVASPP.VIATE.controller;
 
 import com.AVASPP.VIATE.entity.User;
 import com.AVASPP.VIATE.repository.UserRepository;
+import com.AVASPP.VIATE.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ import java.util.Optional;
 public class LoginController {
 
     @Autowired
-    private UserRepository userService;
+    private UserService userService;
 
     @GetMapping("/login")
     public String loginPage() {
@@ -38,7 +39,7 @@ public class LoginController {
                 session.setAttribute("user", user);
                 model.addAttribute("user_name", user.getFull_name()[0]);
 
-                return "/index";
+                return "redirect:/";
             } else {
                 model.addAttribute("error", "Неверный пароль");
             }
@@ -49,9 +50,9 @@ public class LoginController {
         return "login";
     }
 
-    /*@GetMapping("/logout")
+    @GetMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();
         return "redirect:/login";
-    }*/
+    }
 }

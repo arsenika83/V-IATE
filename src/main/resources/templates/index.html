@@ -11,20 +11,48 @@
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <img class="bi me-2" width="60" height="60" role="img" aria-label="Logo" src="../images/logo.png"></use></img>
+                <img class="bi me-2" width="80" height="80" role="img" aria-label="Logo" src="../images/logo.png"></use></img>
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="/" class="button-header">Главная</a></li>
-                <li><a href="/profile" class="button-header">Профиль</a></li>
                 <li><a href="/group" class="button-header">Расписание</a></li>
+                <li><a href="/cource" class="button-header">Курсы</a></li>
+                <li><a href="/journal" class="button-header">Журналы</a></li>
             </ul>
             <div class="text-end">
                 <a th:if="${user_name == null}" class="button-login" href="/login">Вход</a>
                 <a th:if="${user_name != null}" class="button-login" href="/profile">Профиль</a>
+                <img th:if="${user_name != null}" class="img-user" src="../images/user.png">
             </div>
         </div>
     </div>
 </header>
+
+<div class="home-container">
+    <div class="announcement-container">
+        <a class="announcement" th:each="announce: ${announcements}" th:text="${announce.getTitle()}" th:href="${announce.getLink()}"></a>
+
+    </div>
+
+    <div class="news-container">
+        <a th:each="article : ${news}" th:href="@{/news/{id} (id = ${article.getId()})}">
+            <div class="news-article">
+                <h2 th:if="${article.getTitle().length() <= 40}" class="article-title" th:text="${article.getTitle()}"></h2>
+                <h2 th:if="${article.getTitle().length() > 40}" class="article-title-scrollable" th:text="${article.getTitle()}"></h2>
+
+                <p class="article-description" th:text="${article.getDescription()}"></p>
+                <img class="article-image" th:src="${article.getImage_url()}" th:alt="${article.getTitle()}">
+            </div>
+        </a>
+        <a class="more-news" href="/news">Больше новостей</a>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p>© 2025–2026 V-IATE</p>
+    </div>
+</footer>
 
 </body>
 </html>
