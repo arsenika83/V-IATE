@@ -16,13 +16,13 @@
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a href="/" class="button-header">Главная</a></li>
         <li><a href="/group" class="button-header">Расписание</a></li>
-        <li><a href="/cource" class="button-header">Курсы</a></li>
+        <li><a href="/course" class="button-header">Курсы</a></li>
         <li><a href="/journal" class="button-header">Журналы</a></li>
       </ul>
       <div class="text-end">
-        <a th:if="${user_name == null}" class="button-login" href="/login">Вход</a>
-        <a th:if="${user_name != null}" class="button-login" href="/profile">Профиль</a>
-        <img th:if="${user_name != null}" class="img-user" src="../images/user.png">
+        <a th:if="${profile == null}" class="button-login" href="/login">Вход</a>
+        <a th:if="${profile != null}" class="button-login" href="/profile">Профиль</a>
+        <img th:if="${profile != null}" class="img-user" src="../images/user.png">
       </div>
     </div>
   </div>

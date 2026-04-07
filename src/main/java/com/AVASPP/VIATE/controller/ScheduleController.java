@@ -2,6 +2,7 @@ package com.AVASPP.VIATE.controller;
 
 import com.AVASPP.VIATE.entity.*;
 import com.AVASPP.VIATE.repository.StudentRepository;
+import com.AVASPP.VIATE.service.GroupService;
 import com.AVASPP.VIATE.service.ScheduleService;
 import com.AVASPP.VIATE.service.StudentService;
 import jakarta.servlet.http.HttpSession;
@@ -22,6 +23,9 @@ public class ScheduleController {
     private ScheduleService scheduleService;
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private GroupService groupService;
+
 
     @GetMapping("/group")
     public String getGroupList(HttpSession session, Model model) {
@@ -34,32 +38,79 @@ public class ScheduleController {
 
             if(user.getRole().contains("STUDENT")) {
                 Student student = studentService.show(user.getId());
-                model.addAttribute("student_group_id", student.getGroup_id());
+                model.addAttribute("current_user_group", groupService.findById(student.getGroup_id()));
             }
-
         }
 
         long[] courses = {1, 2, 3, 4, 5, 6};
-        List<Group> groups1 = scheduleService.getAllGroupsWithCourse(1);
-        List<Group> groups2 = scheduleService.getAllGroupsWithCourse(2);
-        List<Group> groups3 = scheduleService.getAllGroupsWithCourse(3);
-        List<Group> groups4 = scheduleService.getAllGroupsWithCourse(4);
-        List<Group> groups5 = scheduleService.getAllGroupsWithCourse(5);
-        List<Group> groups6 = scheduleService.getAllGroupsWithCourse(6);
+        List<Group> groups1_temp = scheduleService.getAllGroupsWithCourse(1);
+        List<Group> groups2_temp = scheduleService.getAllGroupsWithCourse(2);
+        List<Group> groups3_temp = scheduleService.getAllGroupsWithCourse(3);
+        List<Group> groups4_temp = scheduleService.getAllGroupsWithCourse(4);
+        List<Group> groups5_temp = scheduleService.getAllGroupsWithCourse(5);
+        List<Group> groups6_temp = scheduleService.getAllGroupsWithCourse(6);
 
-        List<List<Group>> groups_list = new ArrayList<>();
+        List<List<Group>> groups1 = new ArrayList<List<Group>>();
+        List<List<Group>> groups2 = new ArrayList<List<Group>>();
+        List<List<Group>> groups3 = new ArrayList<List<Group>>();
+        List<List<Group>> groups4 = new ArrayList<List<Group>>();
+        List<List<Group>> groups5 = new ArrayList<List<Group>>();
+        List<List<Group>> groups6 = new ArrayList<List<Group>>();
+
+        for (int i = 0; i < groups1_temp.size(); i+=4) {
+            List<Group> temp = new ArrayList<>();
+            for (int j = i; j < i + 4; j++) {
+                temp.add(groups1_temp.get(j));
+            }
+            groups1.add(temp);
+        }
+
+        for (int i = 0; i < groups2_temp.size(); i+=4) {
+            List<Group> temp = new ArrayList<>();
+            for (int j = i; j < i + 4; j++) {
+                temp.add(groups2_temp.get(j));
+            }
+            groups2.add(temp);
+        }
+
+        for (int i = 0; i < groups3_temp.size(); i+=4) {
+            List<Group> temp = new ArrayList<>();
+            for (int j = i; j < i + 4; j++) {
+                temp.add(groups3_temp.get(j));
+            }
+            groups3.add(temp);
+        }
+        for (int i = 0; i < groups4_temp.size(); i+=4) {
+            List<Group> temp = new ArrayList<>();
+            for (int j = i; j < i + 4; j++) {
+                temp.add(groups4_temp.get(j));
+            }
+            groups4.add(temp);
+        }
+
+        for (int i = 0; i < groups5_temp.size(); i+=4) {
+            List<Group> temp = new ArrayList<>();
+            for (int j = i; j < i + 4; j++) {
+                temp.add(groups5_temp.get(j));
+            }
+            groups5.add(temp);
+        }
+
+        for (int i = 0; i < groups6_temp.size(); i+=4) {
+            List<Group> temp = new ArrayList<>();
+            for (int j = i; j < i + 4; j++) {
+                temp.add(groups6_temp.get(j));
+            }
+            groups6.add(temp);
+        }
+
+
+        List<List<List<Group>>> groups_list = new ArrayList<>();
         groups_list.add(groups1);
         groups_list.add(groups2);
         groups_list.add(groups3);
         groups_list.add(groups4);
         groups_list.add(groups5);
-
-        System.out.println(groups5.size() + " SIZE");
-
-        for (int i = 0; i < groups5.size(); i++) {
-            System.out.println(groups5.get(i).getName());
-        }
-
         groups_list.add(groups6);
 
         model.addAttribute("courses", courses);

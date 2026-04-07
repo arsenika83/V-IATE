@@ -9,44 +9,40 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ProfileController {
-
+public class JournalController {
     @Autowired
     private StudentService studentService;
 
     @Autowired
     private GroupService groupService;
 
-    @GetMapping("/profile")
-    public String profile(HttpSession session, Model model) {
+    @GetMapping("/journal")
+    public String journal(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
 
         if(user != null) {
             Long id = user.getId();
             String role = user.getRole();
 
-            if (role.contains("STUDENT")) {
+            if(role.contains("STUDENT")) {
                 Student profile = studentService.show(id);
                 Group group = groupService.findById(profile.getGroup_id());
                 model.addAttribute("profile", profile);
                 model.addAttribute("group", group);
-            } else if (role.contains("TEACHER")) {
-
-            } else if (role.contains("ADMIN")) {
+            }
+            else if(role.contains("TEACHER")) {
 
             }
-            return "profile";
+            else if(role.contains("ADMIN")) {
+
+            }
+            return "journal";
         }
-
-        return "redirect:/login";
+        else {
+            return "redirect:/login";
+        }
     }
-
-    @GetMapping("/error")
-    public String error(HttpSession session, Model model) {
-        return "redirect:/login";
-    }
-
 }
