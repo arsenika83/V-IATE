@@ -28,7 +28,7 @@ public class JournalController {
             String role = user.getRole();
 
             if(role.contains("STUDENT")) {
-                Student profile = studentService.show(id);
+                Student profile = studentService.findOrSaveStudent(id);
                 Group group = groupService.findById(profile.getGroup_id());
                 model.addAttribute("profile", profile);
                 model.addAttribute("group", group);

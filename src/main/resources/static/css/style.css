@@ -259,31 +259,20 @@ img {
     width: 100%;
     background: white;
 }
-
-.day-of-week-tilted-left {
+.day-of-week-today {
     align-self: center;
     border: 2px solid #0056b3;
-    border-radius: 10px;
     padding: 5px 10px 5px 10px;
     margin: 20px 10px 20px 10px;
-    width: 800px;
-    transform: perscpective(3000px) rotateZ(-45) scale(0.8);
-}
-
-.day-of-week-tilted-right {
-    align-self: center;
-    border: 2px solid #0056b3;
-    border-radius: 10px;
-    padding: 5px 10px 5px 10px;
-    margin: 20px 10px 20px 10px;
-    width: 800px;
-    transform: perscpective(3000px) rotateZ(45) scale(0.8);
+    width: 100%;
+    background: #2c6dbc;
 }
 
 .lesson {
     border: 2px solid grey;
     padding: 5px 10px 5px 10px;
     margin: 5px 0px 5px 0px;
+    background: white;
 }
 
 .container-time-teacher {

@@ -37,7 +37,7 @@ public class ScheduleController {
             model.addAttribute("login", user.getLogin());
 
             if(user.getRole().contains("STUDENT")) {
-                Student student = studentService.show(user.getId());
+                Student student = studentService.findOrSaveStudent(user.getId());
                 model.addAttribute("current_user_group", groupService.findById(student.getGroup_id()));
             }
         }
@@ -120,10 +120,25 @@ public class ScheduleController {
     }
 
     @GetMapping("/schedule/{group_id}")
-    public String getSchedule(Model model, @PathVariable Long group_id) {
+    public String getSchedule(HttpSession session, Model model, @PathVariable Long group_id) {
         Schedule schedule = scheduleService.save(group_id);
         String group_name = scheduleService.getGroupNameById(group_id);
         model.addAttribute("group_name", group_name);
+
+        User user = (User) session.getAttribute("user");
+        if(user != null) {
+            model.addAttribute("user_name", user.getFull_name()[0]);
+            model.addAttribute("login", user.getLogin());
+
+            if(user.getRole().contains("STUDENT")) {
+                Student student = studentService.findOrSaveStudent(user.getId());
+                model.addAttribute("current_user_group", groupService.findById(student.getGroup_id()));
+            }
+        }
+
+        int dayOfWeek = scheduleService.getDayOfWeek();
+        System.out.println(dayOfWeek + " DAY OF WEEK ==========================================================");
+        model.addAttribute("day_of_week", dayOfWeek);
 
         long[] monday = schedule.getMonday();
         Lesson[] monday_add = new Lesson[monday.length];

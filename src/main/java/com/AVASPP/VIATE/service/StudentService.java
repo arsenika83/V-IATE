@@ -20,12 +20,12 @@ public class StudentService {
         this.userService = userRepository;
     }
 
-    public Student show(User user) {
+    public Student findOrSaveStudent(User user) {
         if(studentRepository.findById(user.getId()).isPresent()) return studentRepository.findById(user.getId()).get(); //если такой профиль уже существует - его не нужно сохранять
         else return studentRepository.save(new Student(user));
     }
 
-    public Student show(long id) {
+    public Student findOrSaveStudent(long id) {
         User user = userService.findById(id);
         if(studentRepository.findById(user.getId()).isPresent()) return studentRepository.findById(user.getId()).get();
         else return studentRepository.save(new Student(user));

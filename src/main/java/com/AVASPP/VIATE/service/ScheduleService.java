@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -69,5 +71,11 @@ public class ScheduleService {
 
     public Lesson findLessonById(long id) {
         return lessonService.findById(id);
+    }
+
+    public int getDayOfWeek() {
+        int day = 0;
+        day = LocalDate.now().getDayOfWeek().getValue();
+        return day;
     }
 }
