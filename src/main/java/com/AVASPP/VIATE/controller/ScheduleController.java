@@ -29,7 +29,6 @@ public class ScheduleController {
 
     @GetMapping("/group")
     public String getGroupList(HttpSession session, Model model) {
-        //List<Group> groups = scheduleService.getAllGroups();
 
         User user = (User) session.getAttribute("user");
         if(user != null) {
@@ -43,69 +42,15 @@ public class ScheduleController {
         }
 
         long[] courses = {1, 2, 3, 4, 5, 6};
-        List<Group> groups1_temp = scheduleService.getAllGroupsWithCourse(1);
-        List<Group> groups2_temp = scheduleService.getAllGroupsWithCourse(2);
-        List<Group> groups3_temp = scheduleService.getAllGroupsWithCourse(3);
-        List<Group> groups4_temp = scheduleService.getAllGroupsWithCourse(4);
-        List<Group> groups5_temp = scheduleService.getAllGroupsWithCourse(5);
-        List<Group> groups6_temp = scheduleService.getAllGroupsWithCourse(6);
-
-        List<List<Group>> groups1 = new ArrayList<List<Group>>();
-        List<List<Group>> groups2 = new ArrayList<List<Group>>();
-        List<List<Group>> groups3 = new ArrayList<List<Group>>();
-        List<List<Group>> groups4 = new ArrayList<List<Group>>();
-        List<List<Group>> groups5 = new ArrayList<List<Group>>();
-        List<List<Group>> groups6 = new ArrayList<List<Group>>();
-
-        for (int i = 0; i < groups1_temp.size(); i+=4) {
-            List<Group> temp = new ArrayList<>();
-            for (int j = i; j < i + 4; j++) {
-                temp.add(groups1_temp.get(j));
-            }
-            groups1.add(temp);
-        }
-
-        for (int i = 0; i < groups2_temp.size(); i+=4) {
-            List<Group> temp = new ArrayList<>();
-            for (int j = i; j < i + 4; j++) {
-                temp.add(groups2_temp.get(j));
-            }
-            groups2.add(temp);
-        }
-
-        for (int i = 0; i < groups3_temp.size(); i+=4) {
-            List<Group> temp = new ArrayList<>();
-            for (int j = i; j < i + 4; j++) {
-                temp.add(groups3_temp.get(j));
-            }
-            groups3.add(temp);
-        }
-        for (int i = 0; i < groups4_temp.size(); i+=4) {
-            List<Group> temp = new ArrayList<>();
-            for (int j = i; j < i + 4; j++) {
-                temp.add(groups4_temp.get(j));
-            }
-            groups4.add(temp);
-        }
-
-        for (int i = 0; i < groups5_temp.size(); i+=4) {
-            List<Group> temp = new ArrayList<>();
-            for (int j = i; j < i + 4; j++) {
-                temp.add(groups5_temp.get(j));
-            }
-            groups5.add(temp);
-        }
-
-        for (int i = 0; i < groups6_temp.size(); i+=4) {
-            List<Group> temp = new ArrayList<>();
-            for (int j = i; j < i + 4; j++) {
-                temp.add(groups6_temp.get(j));
-            }
-            groups6.add(temp);
-        }
+        List<Group> groups1 = scheduleService.getAllGroupsWithCourse(1);
+        List<Group> groups2 = scheduleService.getAllGroupsWithCourse(2);
+        List<Group> groups3 = scheduleService.getAllGroupsWithCourse(3);
+        List<Group> groups4 = scheduleService.getAllGroupsWithCourse(4);
+        List<Group> groups5 = scheduleService.getAllGroupsWithCourse(5);
+        List<Group> groups6 = scheduleService.getAllGroupsWithCourse(6);
 
 
-        List<List<List<Group>>> groups_list = new ArrayList<>();
+        List<List<Group>> groups_list = new ArrayList<>();
         groups_list.add(groups1);
         groups_list.add(groups2);
         groups_list.add(groups3);

@@ -1,0 +1,33 @@
+.news-container-standalone {
+    display: grid 5px;
+    width: 1000px;
+    height: 650px;
+    margin: 3% 0% 5% 0%;
+    overflow: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.1) transparent;
+}
+.article-text-standalone {
+    font-weight: 30;
+    font-size: large;
+    border-top: 1px solid black;
+    padding: 10px 10px 10px 0px;
+    text-align: justify;
+    background: #F7F9FB;
+}
+.article-title-container {
+    background: #212529;
+    height: 80px;
+}
+.article-title {
+    padding: 2% 2% 0% 2%;
+    text-align: center;
+    color: #F7F9FB;
+    font-size: revert;
+}
+.news-container-wide {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

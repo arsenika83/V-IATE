@@ -1,0 +1,127 @@
+.groups-page {
+    justify-content: center;
+    display: grid;
+}
+.groups-align {
+    justify-content: center;
+    background: #F7F9FB;
+    border-radius: 25px;
+    margin: 5% 0% 5% 0%;;
+
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.course {
+    font-optical-sizing: auto;
+    font-weight: 30;
+    font-style: normal;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.buttons-group {
+    text-align: center;
+    margin: 10px 0px 10px 0px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.flex-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.button-href {
+    align-items: center;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #F7F9FB;
+    color: black;
+    text-decoration: none;
+    border: 1px solid #5085A5;
+    margin: 5px 2px 5px 2px;
+    cursor: pointer;
+    text-align: center;
+    height: 50px;
+    text-wrap: nowrap;
+    transition: all 0.3s ease;
+}
+
+.button-href:hover  {
+    background-color: #31708E;
+    border: 1px solid #31708E;
+    color: #F7F9FB;
+}
+
+.schedule {
+    display: grid;
+    justify-content: center;
+}
+
+.empty-check {
+    width: 800px;
+}
+
+.day-of-week {
+    align-self: center;
+    border: 2px solid #31708E;
+    padding: 5px 10px 5px 10px;
+    margin: 20px 10px 20px 10px;
+    width: 100%;
+}
+
+.lesson {
+    border: 2px solid grey;
+    padding: 5px 10px 5px 10px;
+    margin: 5px 0px 5px 0px;
+}
+
+.container-time-teacher {
+    display: flex;
+    gap: 10px;
+    width: 400px;
+}
+
+.container-type-name {
+    display: flex;
+    gap: 10px;
+    width: 800px;
+}
+
+.lesson-name {
+    padding: 10px 0;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 10;
+    font-style: normal;
+}
+
+.lesson-type {
+    padding: 10px 0;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 10;
+    font-style: normal;
+}
+
+.lesson-time {
+    padding: 10px 0;
+    align-items: left;
+    text-align: left;
+    font-family: "Roboto", sans-serif;
+    font-weight: 10;
+    font-style: normal;
+}
+
+.lesson-teacher {
+    padding: 10px 0;
+    align-items: left;
+    text-align: left;
+    font-family: "Roboto", sans-serif;
+    font-weight: 10;
+    font-style: normal;
+}

@@ -1,0 +1,128 @@
+.home-container {
+    display: grid;
+    grid-template-columns: repeat(2, 400px);
+    gap: 40px;
+    height: 800px;
+}
+
+.announcement-container {
+    display: grid 5px;
+    width: 300px;
+    height: 600px;
+    margin: 7% 30% 10% 30%;
+    overflow: auto;
+
+    border: 1px solid #5085A5;
+    background-color: #5085A5;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.1) transparent;
+}
+
+.announcement {
+    padding: 2%;
+    margin: 2%;
+    text-align: left;
+    color: #F7F9FB;
+    background-color: #5085A5;
+    border-bottom: 1px solid #F7F9FB;
+    display: block;
+    text-decoration: none;
+}
+
+.announcement:hover {
+    background: #F7F9FB;
+    color: #212529;
+}
+
+.news-container {
+    display: grid 5px;
+    width: 1000px;
+    height: 600px;
+    margin: 7% 30% 10% 30%;
+    overflow: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.1) transparent;
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+}
+.news-a {
+    text-decoration: none;
+}
+
+.news-article {
+    background-color: #5085A5;
+    margin: 0% 5% 12% 0%;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    background: #8FC1E3;
+
+    transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+.news-article:hover {
+    background-color: #31708E;
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -12px rgba(0,0,0,0.1);
+}
+
+.article-title {
+    padding: 2% 2% 0% 2%;
+    text-align: center;
+    color: #F7F9FB;
+    font-size: revert;
+    font-weight: 50;
+}
+
+.article-title-scrollable {
+    padding: 2% 2% 0% 2%;
+    text-align: center;
+    color: #F7F9FB;
+
+    white-space: nowrap;
+    animation: scroll-text 15s linear infinite;
+}
+
+@keyframes scroll-text {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.article-description {
+    color: #F7F9FB;
+    text-align: center;
+    font-size: smaller;
+    margin: 0px 0px 5px 0px;
+}
+
+.article-image {
+    position: sticky;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-top: auto;
+}
+.article-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #31708E;
+    transition: all 0.3s ease;
+    pointer-events: none; /* Чтобы градиент не мешал кликам */
+}
+
+.article-image:hover::after {
+    background-color: #31708E;
+}
+
+.more-news{
+    color: #F7F9FB;
+    background: #31708E;
+}

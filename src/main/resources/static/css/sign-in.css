@@ -1,34 +1,14 @@
-@font-face {
-/*font-family: 'FindSans Pro Light';*/
-src: url('gromkodigital.ru');
-font-weight: normal;
-font-style: normal;
-}
-
-body {
-    align-items: center;
-    font-family: "Roboto", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 1;
-    font-style: normal;
-    background: #F5F5F5;
-}
-
 form {
     text-align: center;
-    border: 3px solid #f1f1f1;
+    border: 3px solid #F7F9FB;
     width: 500px;
     height: 500px;
     margin: 100px auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #F7F9FB;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     border-radius: 20px;
     margin-bottom: 210px;
-}
-p {
-    text-align: left;
-    margin: 8px 0px 0px 0px;
 }
 
 input[type=text], input[type=password], input[type=email] {
@@ -47,7 +27,7 @@ img {
 }
 
 button {
-    background-color: #458adf;
+    background-color: #31708E;
     color: white;
     padding: 14px 0;
     margin: 30px 0px 0px 0px;
@@ -59,7 +39,7 @@ button {
 }
 
 button:hover {
-    background-color: #2c6dbc;
+    background-color: #5085A5;
 }
 
 .container {
@@ -88,7 +68,7 @@ button:hover {
     color: white;
     text-align: center;
     padding: 20px 0;
-    margin-top: auto; /* Для прижатия к низу */
+    margin-top: auto;
 }
 
 .footer-content {
