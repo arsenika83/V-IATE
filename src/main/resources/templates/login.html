@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <link th:href="@{/css/sign-in.css}" rel="stylesheet">
-  <link href="/css/style.css" rel="stylesheet">
   <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/sign-in.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <title>V-IATE - Вход</title>
 </head>
-<body class="container">
+<body class="no-margin-body">
+  <main>
+    <form th:action="@{/login}" method="post">
+      <img class="" th:src="@{/images/logo_black.png}" alt="" width="100" height="100">
+      <h1 class="">Вход в систему</h1>
+      <div th:if="${error}" class="alert alert-danger" role="alert">
+        <span th:text="${error}"></span>
+      </div>
+      <div class="">
+        <p>Логин</p>
+        <input type="text" class="form-control" id="login" name="login" placeholder="Введите ваш логин">
+      </div>
+      <div class="">
+        <p>Пароль</p>
+        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Введите ваш пароль">
+      </div>
+      <button class="" type="submit">Войти</button>
+    </form>
+  </main>
+  <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" class="astro-vvvwv3sm"></script>
 
-<main class="">
-  <form th:action="@{/login}" method="post">
-    <img class="" th:src="@{/images/logo.png}" alt="" width="100" height="100">
-    <h1 class="">Вход в систему</h1>
-    <div th:if="${error}" class="alert alert-danger" role="alert">
-      <span th:text="${error}"></span>
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>© 2025–2026 V-IATE</p>
     </div>
-    <div class="">
-      <p>Логин</p>
-      <input type="text" class="form-control" id="login" name="login" placeholder="Введите ваш логин">
-    </div>
-    <div class="">
-      <p>Пароль</p>
-      <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Введите ваш пароль">
-    </div>
-    <button class="" type="submit">Войти</button>
-  </form>
-</main>
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" class="astro-vvvwv3sm"></script>
-
-<footer class="site-footer">
-  <div class="footer-content">
-    <p>© 2025–2026 V-IATE</p>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>

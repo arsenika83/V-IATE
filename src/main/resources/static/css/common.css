@@ -20,6 +20,10 @@ html {
     animation: fadeInUp 0.5s ease forwards;
 }
 
+a {
+    text-decoration: none;
+}
+
 @keyframes fadeInUp {
     from {
 
@@ -152,4 +156,11 @@ header.hidden {
 
 .vertical-divider {
 
+}
+
+.page-title {
+    font-weight: 50;
+    color: black;
+    margin: 1%;
+    text-align: center;
 }

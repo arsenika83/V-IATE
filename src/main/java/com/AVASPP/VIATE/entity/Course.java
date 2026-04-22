@@ -13,15 +13,24 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private int total_hours;
-    private String teacher_name;
+    private String title;
     private Long group_id;
-    private String[] files;
+    private Long[] tasks;
+    private Long[] files;
+    private Long teacher_id;
+    private String teacher_name;
 
     public Course() {}
-    public Course(String name, Long group_id) {
-        this.name = name;
+    public Course(String name, Long group_id, Long teacher_id) {
+        this.title = name;
         this.group_id = group_id;
+        this.teacher_id = teacher_id;
+    }
+    public Course(String name, Long group_id, Long[] tasks, Long[] files, Long teacher_id) {
+        this.title = name;
+        this.group_id = group_id;
+        this.tasks = tasks;
+        this.files = files;
+        this.teacher_id = teacher_id;
     }
 }

@@ -1,3 +1,6 @@
+.no-margin-body {
+    margin: 0px;
+}
 form {
     text-align: center;
     border: 3px solid #F7F9FB;
