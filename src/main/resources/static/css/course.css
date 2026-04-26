@@ -61,27 +61,34 @@
     padding: 2%;
     margin: auto;
     margin-top: 2%;
+    margin-bottom: 5%;
 
     scrollbar-width: thin;
     scrollbar-color: rgba(0,0,0,0.1) transparent;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
 }
 
 .task {
     border: 1px solid #31708E;
+    border-radius: 15px;
     width: 100%;
-    height: 200px;
     padding: 1%;
     margin: 1%;
+    background: white;
+    box-shadow: 0 0px 5px 5px rgba(0,0,0,0.1);
 }
 
 .task-title {
-    font-weight: 30;
+    font-size: large;
+    text-align: center;
     width: 100%;
-    background: #8FC1E3;
+    background: #31708E;
     color: #F7F9FB;
     padding: 1%;
     margin: 0px;
+    border-radius: 10px;
 }
 
 .task-description {
@@ -89,5 +96,17 @@
     color: black;
     text-align: left;
     padding-left: 1%;
-    margin: 0px;
+    margin: 1% 0%;
+}
+
+.task-upload-form {
+    margin: 1% 0% 1% 0%;
+    padding: 1%;
+    border: 1px solid #687864;
+    border-radius: 15px;
+}
+
+.upload-file-form {
+    display: flex;
+    flex-direction: column;
 }

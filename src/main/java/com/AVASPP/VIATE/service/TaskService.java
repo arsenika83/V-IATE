@@ -24,8 +24,12 @@ public class TaskService {
         return (List<Task>) taskRepository.findAllByCourseId(id);
     }
 
-    public void updateStatus(long id, String status) {
-        taskRepository.updateStatus(id, status);
+    public void updateSubmissionIds(long id, long submission_id) {
+        taskRepository.updateSubmissionIds(id, submission_id);
+    }
+
+    public void save(Task task) {
+        taskRepository.save(task);
     }
 
 }

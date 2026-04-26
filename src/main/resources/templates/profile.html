@@ -37,22 +37,22 @@
         <img class="profile-info-img" src="../images/phone.png">
         <h4 class="profile-info-field-title">Номер телефона</h4>
     </div>
-    <h4 class="profile-info-field" th:if="${profile.getPhone() != null}" th:text="${profile.getPhone()}"></h4>
-    <h4 class="profile-info-field" th:if="${profile.getPhone() == null}">Пусто</h4>
+    <p class="profile-info-field" th:if="${profile.getPhone() != null}" th:text="${profile.getPhone()}"></p>
+    <p class="profile-info-field" th:if="${profile.getPhone() == null}">Пусто</p>
 
     <div class="profile-info-unit-title">
         <img class="profile-info-img" src="../images/envelope.png">
         <h4 class="profile-info-field-title">Электронная почта</h4>
     </div>
-    <h4 class="profile-info-field" th:if="${profile.getEmail() != null}" th:text="${profile.getEmail()}"></h4>
-    <h4 class="profile-info-field" th:if="${profile.getEmail() == null}">Пусто</h4>
+    <p class="profile-info-field" th:if="${profile.getEmail() != null}" th:text="${profile.getEmail()}"></p>
+    <p class="profile-info-field" th:if="${profile.getEmail() == null}">Пусто</p>
 
     <div class="profile-info-unit-title">
         <img class="profile-info-img" src="../images/calendar.png">
         <h4 class="profile-info-field-title">Дата рождения</h4>
     </div>
-    <h4 class="profile-info-field" th:if="${profile.getBirth_date() != null}" th:text="${profile.getBirth_date()}"></h4>
-    <h4 class="profile-info-field" th:if="${profile.getBirth_date() == null}">Пусто</h4>
+    <p class="profile-info-field" th:if="${profile.getBirth_date() != null}" th:text="${profile.getBirth_date()}"></p>
+    <p class="profile-info-field" th:if="${profile.getBirth_date() == null}">Пусто</p>
 
 </div>
 

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name="tasks")
@@ -17,12 +18,11 @@ public class Task {
 
     private String title;
     private String description;
-    private String comment;
-    private LocalDateTime deadline;
+    private LocalTime deadline;
     private Long course_id;
     private Long[] files;
     private boolean is_open;
-    private String status;
+    private Long[] submission_id;
 
     public Task() {}
     public Task(String title, Long course_id) {

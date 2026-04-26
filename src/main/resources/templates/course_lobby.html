@@ -35,8 +35,8 @@
   <div class="course-container-student" th:if="${role == 'STUDENT'}">
     <a class="course-a" th:each="course : ${student_courses}" th:href="@{/course?id={course_id} (course_id = ${course.getId()})}">
       <div class="course">
-        <h3 class="course-title" th:text="${course.getTitle()}"></h3>
-        <h4 class="course-teacher-name" th:text="${course.getTeacher_name()}"></h4>
+        <p class="course-title" th:text="${course.getTitle()}"></p>
+        <p class="course-teacher-name" th:text="${course.getTeacher_name()}"></p>
       </div>
     </a>
   </div>
