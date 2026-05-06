@@ -1,108 +1,82 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <link href="/css/style.css" rel="stylesheet">
-  <link href="/css/common.css" rel="stylesheet">
-  <link href="/css/course.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <title th:text="${course.getTitle()}"></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${course.title}">Курс — V‑IATE</title>
+    <link href="/css/common.css" rel="stylesheet">
+    <link href="/css/course.css" rel="stylesheet">
 </head>
 <body>
+
 <header class="site-header">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <img class="bi me-2" width="140" height="80" role="img" aria-label="Logo" src="../images/logo.png"></use></img>
-      </a>
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="/" class="button-header">Главная</a></li>
-        <li><a href="/group" class="button-header">Расписание</a></li>
-        <li><a href="/course_lobby" class="button-header">Курсы</a></li>
-        <li><a href="/journal" class="button-header">Журналы</a></li>
-      </ul>
-      <div class="text-end">
-        <a th:if="${profile == null}" class="button-login" href="/login">Вход</a>
-        <a th:if="${profile != null}" class="button-login" href="/profile">Профиль</a>
-        <img th:if="${profile != null}" class="img-user" src="../images/user.png">
-      </div>
+    <div class="header-container">
+        <a href="/" class="logo-link">
+            <img src="/images/logo.png" alt="V-IATE" class="logo-img">
+        </a>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a href="/" class="nav-link">Главная</a></li>
+                <li><a href="/group" class="nav-link">Расписание</a></li>
+                <li><a href="/course_lobby" class="nav-link">Курсы</a></li>
+                <li><a href="/journal" class="nav-link">Журналы</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <a th:if="${profile == null}" href="/login" class="btn-login">Вход</a>
+            <div th:if="${profile != null}" class="user-profile">
+                <span class="user-greeting" th:text="${profile.full_name[0]}"></span>
+                <a href="/profile" class="profile-link">
+                    <img src="/images/user.png" alt="Профиль" class="user-avatar">
+                </a>
+                <a href="/logout" class="logout-link">Выйти</a>
+            </div>
+        </div>
     </div>
-  </div>
 </header>
 
-<h2 class="course-title" th:text="${course.getTitle()}"></h2>
+<main class="main-content">
+    <h1 class="course-title-page" th:text="${course.title}"></h1>
 
-<div class="task-container" th:if="${role} == 'STUDENT'">
-  <h2 class="page-title">Задания</h2>
-  <div class="task" th:each="task_number : ${taskCount}" th:with="task=${tasks[task_number]}">
-    <p class="task-title" th:text="${task.getTitle()}"></p>
-    <p class="task-description" th:text="${task.getDescription()}"></p>
+    <div class="task-container" th:if="${role == 'STUDENT'}">
+        <h2 class="section-title" style="margin-bottom:1rem;">📋 Задания</h2>
+        <div class="task" th:each="task_number : ${taskCount}" th:with="task=${tasks[task_number]}">
+            <p class="task-title" th:text="${task.title}"></p>
+            <p class="task-description" th:text="${task.description}"></p>
 
-    <div class="task-upload-form" th:with="submission=${taskSubmissions[task_number]}">
-      <div th:if="${submission != null}" th:with="status=${taskStatuses[task_number]}">
-        Ваше решение:
-        <a th:href="@{/submission/{id}/download(id=${submission.id})}" th:text="${submission.getFile_name()}"></a>
-        (отправлено <span th:text="${#temporals.format(submission.getSubmitted_at(), 'dd.MM.yyyy HH:mm')}"></span>)
-
-        <p style="background: orange;" th:if="${status} == 'REVIEW'">На проверке</p>
-        <p style="background: darkseagreen;" th:if="${status} == 'ACCEPTED'">Принято</p>
-        <p style="background: indianred;" th:if="${status} == 'DENIED'">Отклонено</p>
-      </div>
-      <form class="upload-file-form" method="post" th:action="@{/task/{id}/submit(id=${task.id}, course_id=${task.getCourse_id()})}" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <button type="submit">
-          <span th:if="${submission == null}">Отправить решение</span>
-          <span th:if="${submission != null}">Заменить решение</span>
-        </button>
-      </form>
+            <div class="task-upload-form" th:with="submission=${taskSubmissions[task_number]}">
+                <div th:if="${submission != null}" th:with="status=${taskStatuses[task_number]}">
+                    <div class="submission-info">
+                        Ваше решение:
+                        <a th:href="@{/submission/{id}/download(id=${submission.id})}" class="file-link" th:text="${submission.file_name}"></a>
+                        (отправлено <span th:text="${#temporals.format(submission.submitted_at, 'dd.MM.yyyy HH:mm')}"></span>)
+                    </div>
+                    <div th:class="'status-badge status-' + ${status.toLowerCase()}" th:text="${status == 'REVIEW' ? 'На проверке' : (status == 'ACCEPTED' ? 'Принято' : 'Отклонено')}"></div>
+                </div>
+                <form class="upload-file-form" method="post" th:action="@{/task/{id}/submit(id=${task.id}, course_id=${task.course_id})}" enctype="multipart/form-data">
+                    <input type="file" name="file">
+                    <button type="submit">
+                        <span th:if="${submission == null}">Отправить решение</span>
+                        <span th:if="${submission != null}">Заменить решение</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div th:if="${tasks.empty}" class="empty-placeholder">Нет заданий</div>
     </div>
-
-  </div>
-</div>
+    <div th:if="${role != 'STUDENT'}" class="empty-placeholder" style="text-align:center; margin:3rem;">Доступно только для студентов</div>
+</main>
 
 <footer class="site-footer">
-  <div class="footer-content">
-    <p>© 2025–2026 V-IATE</p>
-  </div>
+    <div class="footer-inner">
+        <p class="copyright">© 2025–2026 V‑IATE — Студенческий портал</p>
+        <div class="footer-links">
+            <a href="#">О проекте</a>
+            <a href="#">Поддержка</a>
+            <a href="#">Конфиденциальность</a>
+        </div>
+    </div>
 </footer>
 
 </body>
-
-<!--<script>
-  // Загрузка с прогрессом
-  function upload(task_id) {
-    const form = document.getElementsByClassName('task-upload-form')[0];
-    const urlParams = new URLSearchParams(window.location.search);
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData();
-      formData.append('file', document.getElementById('file').files[0]);
-      formData.append('course_id', urlParams.get('id'));
-
-      const xhr = new XMLHttpRequest();
-
-      xhr.upload.addEventListener('progress', (event) => {
-        if (event.lengthComputable) {
-          const percent = (event.loaded / event.total) * 100;
-          document.getElementById('progress').textContent =
-          `Прогресс: ${Math.round(percent)}%`;
-        }
-      });
-
-      xhr.onload = () => {
-        if (xhr.status === 200) {
-          alert('Файл загружен!');
-
-        }
-      };
-
-      xhr.open('POST', 'http://localhost:8080/task/' + task_id + '/submit');
-      xhr.send(formData);
-    });
-  }
-</script>-->
-
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>-->
 </html>
-

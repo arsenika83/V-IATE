@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <link href="/css/common.css" rel="stylesheet">
-  <link href="/css/sign-in.css" rel="stylesheet">
-  <link href="/css/style.css" rel="stylesheet">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
-  <meta charset="UTF-8">
-  <title>V-IATE - Вход</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>V-IATE · Вход</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
+    <link href="/css/sign-in.css" rel="stylesheet">
 </head>
-<body class="no-margin-body">
-  <main>
-    <form th:action="@{/login}" method="post">
-      <img class="" th:src="@{/images/logo_black.png}" alt="" width="100" height="100">
-      <h1 class="">Вход в систему</h1>
-      <div th:if="${error}" class="alert alert-danger" role="alert">
-        <span th:text="${error}"></span>
-      </div>
-      <div class="">
-        <p>Логин</p>
-        <input type="text" class="form-control" id="login" name="login" placeholder="Введите ваш логин">
-      </div>
-      <div class="">
-        <p>Пароль</p>
-        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Введите ваш пароль">
-      </div>
-      <button class="" type="submit">Войти</button>
-    </form>
-  </main>
-  <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" class="astro-vvvwv3sm"></script>
+<body>
 
-  <footer class="site-footer">
-    <div class="footer-content">
-      <p>© 2025–2026 V-IATE</p>
-    </div>
-  </footer>
+    <main class="container">
+        <form th:action="@{/login}" method="post">
+            <div class="logo-container">
+                <img th:src="@{/images/logo_black.png}" alt="V-IATE" width="80" height="80">
+            </div>
+            <h1>Добро пожаловать</h1>
+
+            <div th:if="${error}" class="alert" role="alert">
+                <span th:text="${error}"></span>
+            </div>
+
+            <div class="input-group">
+                <p>Логин</p>
+                <input type="text" id="login" name="login" placeholder="Введите ваш логин" autofocus>
+            </div>
+
+            <div class="input-group">
+                <p>Пароль</p>
+                <input type="password" id="password" name="password" placeholder="Введите пароль">
+            </div>
+
+            <button type="submit">Войти →</button>
+        </form>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2025–2026 V-IATE — Умный студенческий портал</p>
+        </div>
+    </footer>
 
 </body>
 </html>

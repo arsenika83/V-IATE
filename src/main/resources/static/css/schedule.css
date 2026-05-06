@@ -1,127 +1,184 @@
+/* Groups page */
 .groups-page {
-    justify-content: center;
-    display: grid;
-}
-.groups-align {
-    justify-content: center;
-    background: #F7F9FB;
-    border-radius: 25px;
-    margin: 5% 0% 5% 0%;;
-
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.2);
-}
-.course-year {
-    font-optical-sizing: auto;
-    font-weight: 30;
-    font-style: normal;
-    text-align: center;
-    padding: 5px 0;
-}
-
-.buttons-group {
-    text-align: center;
-    margin: 10px 0px 10px 0px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
-.flex-buttons {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
     display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.groups-align {
+    background: rgba(18, 25, 40, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-radius: 28px;
+    padding: 1.5rem;
+    transition: all 0.2s;
+}
+
+.course-year {
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    background: linear-gradient(135deg, #fff, var(--accent-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.buttons-group, .flex-buttons {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    align-content: center;
+    gap: 0.75rem;
 }
 
 .button-href {
-    align-items: center;
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #F7F9FB;
-    color: black;
-    text-decoration: none;
-    border: 1px solid #5085A5;
-    margin: 5px 2px 5px 2px;
-    cursor: pointer;
-    text-align: center;
-    height: 50px;
-    text-wrap: nowrap;
-    transition: all 0.3s ease;
+    padding: 0.6rem 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 40px;
+    color: #f8fbff;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
-.button-href:hover  {
-    background-color: #31708E;
-    border: 1px solid #31708E;
-    color: #F7F9FB;
+.button-href:hover {
+    background: rgba(0, 229, 255, 0.1);
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+    transform: translateY(-2px);
 }
 
+/* Расписание (schedule) */
 .schedule {
-    display: grid;
-    justify-content: center;
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .empty-check {
-    width: 800px;
-}
-
-.day-of-week {
-    align-self: center;
-    border: 2px solid #31708E;
-    padding: 5px 10px 5px 10px;
-    margin: 20px 10px 20px 10px;
     width: 100%;
 }
 
-.lesson {
-    border: 2px solid grey;
-    padding: 5px 10px 5px 10px;
-    margin: 5px 0px 5px 0px;
+.day-of-week,
+.day-of-week-today {
+    background: rgba(18, 25, 40, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 229, 255, 0.25);
+    border-radius: 24px;
+    padding: 1.2rem;
+    transition: all 0.2s;
 }
 
-.container-time-teacher {
-    display: flex;
-    gap: 10px;
-    width: 400px;
+.day-of-week-today {
+    border-left: 4px solid var(--accent-cyan);
+    background: rgba(0, 229, 255, 0.05);
+}
+
+.day-of-week h3,
+.day-of-week-today h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-cyan);
+    font-weight: 500;
+}
+
+.lesson {
+    background: rgba(10, 15, 26, 0.5);
+    border-radius: 20px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.2s;
+}
+
+.lesson:hover {
+    border-color: rgba(0, 229, 255, 0.4);
+    background: rgba(0, 229, 255, 0.02);
 }
 
 .container-type-name {
     display: flex;
-    gap: 10px;
-    width: 800px;
-}
-
-.lesson-name {
-    padding: 10px 0;
-    align-items: center;
-    font-family: "Roboto", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 10;
-    font-style: normal;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
 .lesson-type {
-    padding: 10px 0;
-    align-items: center;
-    font-family: "Roboto", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 10;
-    font-style: normal;
+    background: rgba(0, 229, 255, 0.15);
+    padding: 0.2rem 0.8rem;
+    border-radius: 40px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent-cyan);
+}
+
+.lesson-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.lesson-week,
+.lesson-classroom {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+.container-time-teacher {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    gap: 1rem;
 }
 
 .lesson-time {
-    padding: 10px 0;
-    align-items: left;
-    text-align: left;
-    font-family: "Roboto", sans-serif;
-    font-weight: 10;
-    font-style: normal;
+    font-weight: 600;
+    color: var(--accent-cyan);
 }
 
 .lesson-teacher {
-    padding: 10px 0;
-    align-items: left;
-    text-align: left;
-    font-family: "Roboto", sans-serif;
-    font-weight: 10;
-    font-style: normal;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .buttons-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    .container-type-name {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    
+    /* Дополнительный штрих для единой атмосферы */
+.day-of-week, .day-of-week-today {
+    transition: box-shadow 0.2s;
+}
+.day-of-week:hover, .day-of-week-today:hover {
+    box-shadow: 0 8px 20px rgba(0, 229, 255, 0.1);
+}
+.empty-check {
+    animation: fadeSlide 0.4s ease-out;
+}
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 }

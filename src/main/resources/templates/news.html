@@ -1,46 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link href="/css/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${article.title}">Новость — V‑IATE</title>
     <link href="/css/common.css" rel="stylesheet">
     <link href="/css/news.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>V-IATE - Новости</title>
 </head>
 <body>
+
 <header class="site-header">
-    <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <img class="bi me-2" width="140" height="80" role="img" aria-label="Logo" src="../images/logo.png"></use></img>
-            </a>
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/" class="button-header">Главная</a></li>
-                <li><a href="/group" class="button-header">Расписание</a></li>
-                <li><a href="/course_lobby" class="button-header">Курсы</a></li>
-                <li><a href="/journal" class="button-header">Журналы</a></li>
+    <div class="header-container">
+        <a href="/" class="logo-link">
+            <img src="/images/logo.png" alt="V-IATE" class="logo-img">
+        </a>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a href="/" class="nav-link">Главная</a></li>
+                <li><a href="/group" class="nav-link">Расписание</a></li>
+                <li><a href="/course_lobby" class="nav-link">Курсы</a></li>
+                <li><a href="/journal" class="nav-link">Журналы</a></li>
             </ul>
-            <div class="text-end">
-                <a th:if="${user_name == null}" class="button-login" href="/login">Вход</a>
-                <a th:if="${user_name != null}" class="button-login" href="/profile">Профиль</a>
-                <img th:if="${user_name != null}" class="img-user" src="../images/user.png">
+        </nav>
+        <div class="user-actions">
+            <a th:if="${user_name == null}" href="/login" class="btn-login">Вход</a>
+            <div th:if="${user_name != null}" class="user-profile">
+                <span class="user-greeting" th:text="${user_name}"></span>
+                <a href="/profile" class="profile-link">
+                    <img src="/images/user.png" alt="Профиль" class="user-avatar">
+                </a>
+                <a href="/logout" class="logout-link">Выйти</a>
             </div>
         </div>
     </div>
 </header>
-<div class="news-container-wide">
-    <div class="news-container-standalone">
-        <div class="article-title-container">
-            <h2 class="article-title" th:text="${article.getTitle()}"></h2>
+
+<main class="main-content">
+    <div class="news-container-wide">
+        <div class="news-container-standalone">
+            <div class="article-title-container">
+                <h1 class="article-title" th:text="${article.title}"></h1>
+            </div>
+            <pre class="article-text-standalone" th:text="${article_text}"></pre>
         </div>
-        <pre class="article-text-standalone" th:text="${article_text}"></pre>
     </div>
-</div>
+</main>
 
 <footer class="site-footer">
-    <div class="footer-content">
-        <p>© 2025–2026 V-IATE</p>
+    <div class="footer-inner">
+        <p class="copyright">© 2025–2026 V‑IATE — Студенческий портал</p>
+        <div class="footer-links">
+            <a href="#">О проекте</a>
+            <a href="#">Поддержка</a>
+            <a href="#">Конфиденциальность</a>
+        </div>
     </div>
 </footer>
 

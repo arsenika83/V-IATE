@@ -1,112 +1,178 @@
+/* Course lobby & tasks dark theme */
 .course-lobby-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
 .course-container-student {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 50%;
-    height: 800px;
-    margin: 0% 0% 5% 0%;
-    padding: 1%;
-
-    overflow: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0,0,0,0.1) transparent;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
 }
 
 .course-a {
     text-decoration: none;
-    height: 150px;
 }
 
 .course {
-    background: #F7F9FB;
-    heigth: 300px;
-    margin: 0% 2% 2% 0%;
-    border: 1px solid #31708E;
-    transition: all 0.3s ease;
+    background: rgba(18, 25, 40, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .course:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px -12px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 20px 35px -12px rgba(0, 229, 255, 0.2);
 }
 
 .course-title {
-    font-weight: 30;
-    width: 100%;
-    background: #8FC1E3;
-    color: #F7F9FB;
-    padding: 2% 4% 4% 4%;
-}
-
-.course:hover .course-title {
-    background-color: #31708E;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    color: #0A0F1A;
 }
 
 .course-teacher-name {
-    font-weight: 30;
-    color: black;
-    padding: 0% 4% 4% 4%;
+    padding: 1rem;
     text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: auto;
 }
 
+/* Task container (страница курса) */
 .task-container {
-    border: 1px solid #31708E;
-    width: 1000px;
-    height: 800px;
-    padding: 2%;
-    margin: auto;
-    margin-top: 2%;
-    margin-bottom: 5%;
-
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0,0,0,0.1) transparent;
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: rgba(18, 25, 40, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-radius: 28px;
+    max-height: 70vh;
+    overflow-y: auto;
 }
 
 .task {
-    border: 1px solid #31708E;
-    border-radius: 15px;
-    width: 100%;
-    padding: 1%;
-    margin: 1%;
-    background: white;
-    box-shadow: 0 0px 5px 5px rgba(0,0,0,0.1);
+    background: rgba(10, 15, 26, 0.6);
+    border-radius: 20px;
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    transition: 0.2s;
+}
+
+.task:hover {
+    border-color: rgba(0, 229, 255, 0.4);
 }
 
 .task-title {
-    font-size: large;
-    text-align: center;
-    width: 100%;
-    background: #31708E;
-    color: #F7F9FB;
-    padding: 1%;
-    margin: 0px;
-    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent-cyan);
+    margin-bottom: 0.5rem;
 }
 
 .task-description {
-    font-weight: 30;
-    color: black;
-    text-align: left;
-    padding-left: 1%;
-    margin: 1% 0%;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
 }
 
 .task-upload-form {
-    margin: 1% 0% 1% 0%;
-    padding: 1%;
-    border: 1px solid #687864;
-    border-radius: 15px;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .upload-file-form {
     display: flex;
     flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.upload-file-form input[type="file"] {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(0,229,255,0.3);
+    border-radius: 40px;
+    padding: 0.5rem 1rem;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+}
+
+.upload-file-form button {
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+    border: none;
+    border-radius: 40px;
+    padding: 0.6rem 1.2rem;
+    color: #0A0F1A;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.upload-file-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.4);
+}
+
+/* статусы */
+p[style*="background: orange;"],
+p[style*="background: darkseagreen;"],
+p[style*="background: indianred;"] {
+    background: transparent !important;
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    border-radius: 40px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Если хотите исправить в html, но для текущего вида сделаем */
+.task-upload-form p {
+    margin-top: 0.5rem;
+}
+
+/* статусы */
+.submission-info {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+.file-link {
+    color: var(--accent-cyan);
+    border-bottom: 1px dashed var(--accent-cyan);
+}
+.status-badge {
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    border-radius: 40px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin: 0.5rem 0;
+}
+.status-review {
+    background: rgba(255, 165, 0, 0.15);
+    color: #FFA500;
+    border: 1px solid #FFA500;
+}
+.status-accepted {
+    background: rgba(45, 212, 191, 0.15);
+    color: #2DD4BF;
+    border: 1px solid #2DD4BF;
+}
+.status-denied {
+    background: rgba(255, 77, 109, 0.15);
+    color: #FF4D6D;
+    border: 1px solid #FF4D6D;
 }
