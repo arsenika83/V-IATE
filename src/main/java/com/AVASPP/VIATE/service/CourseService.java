@@ -30,6 +30,10 @@ public class CourseService {
         return (List<Course>) courseRepository.findAllByGroupId(id);
     }
 
+    public List<Course> getAllCoursesByTeacherId(long id) {
+        return (List<Course>) courseRepository.findAllByTeacherId(id);
+    }
+
     public String getTeacherNameByCourseId(long id) {
         Course course = courseRepository.findById(id).get();
         String[] full_name = userRepository.findById(course.getTeacher_id()).get().getFull_name();

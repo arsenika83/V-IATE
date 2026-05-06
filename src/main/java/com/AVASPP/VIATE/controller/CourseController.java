@@ -6,6 +6,9 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +16,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
 
 @Controller
@@ -54,7 +60,16 @@ public class CourseController {
                 model.addAttribute("student_courses", student_courses);
             }
             else if(role.contains("TEACHER")) {
+                List<Course> teacher_courses = courseService.getAllCoursesByTeacherId(user.getId());
+                Dictionary<Long, String> group_names = new Hashtable<>();
 
+                for (int i = 0; i < teacher_courses.size(); i++) {
+                    Group group = groupService.findById(teacher_courses.get(i).getGroup_id());
+                    group_names.put(teacher_courses.get(i).getId(), group.getName());
+                }
+
+                model.addAttribute("teacher_courses", teacher_courses);
+                model.addAttribute("group_names", group_names);
             }
             else if(role.contains("ADMIN")) {
 
@@ -91,8 +106,12 @@ public class CourseController {
                 for(int i = 0; i < tasks.size(); i++) {
                     task_count[i] = i;
                     TaskSubmission submission = taskSubmissionService.findByTaskIdAndUserId(tasks.get(i).getId(), user_id);
+                    System.out.println("=================================================== " + tasks.get(i).getId() + " " + user_id);
                     taskSubmissions.add(submission);
-                    taskStatuses.add(submission.getStatus());
+
+                    if(submission != null) {
+                        taskStatuses.add(submission.getStatus());
+                    }
                 }
 
                 model.addAttribute("tasks", tasks);
@@ -103,7 +122,29 @@ public class CourseController {
                 model.addAttribute("course", course);
             }
             else if(role.contains("TEACHER")) {
+                Course course = courseService.findById(id);
 
+                List<Task> tasks = taskService.findAllByCourseId(course.getId());
+                List<String> taskStatuses = new ArrayList<>();
+
+                int[] task_count = new int[tasks.size()];
+                List<TaskSubmission> taskSubmissions = new ArrayList<>();
+                for(int i = 0; i < tasks.size(); i++) {
+                    task_count[i] = i;
+                    TaskSubmission submission = taskSubmissionService.findByTaskIdAndUserId(tasks.get(i).getId(), user_id);
+                    System.out.println("=================================================== " + tasks.get(i).getId() + " " + user_id);
+                    taskSubmissions.add(submission);
+
+                    if(submission != null) {
+                        taskStatuses.add(submission.getStatus());
+                    }
+                }
+
+                model.addAttribute("tasks", tasks);
+                model.addAttribute("taskCount", task_count);
+                model.addAttribute("taskSubmissions", taskSubmissions);
+                model.addAttribute("taskStatuses", taskStatuses);
+                model.addAttribute("course", course);
             }
             else if(role.contains("ADMIN")) {
 
@@ -116,15 +157,14 @@ public class CourseController {
     }
 
     @PostMapping("/task/add")
-    public String addTask(HttpSession session, @RequestParam String title, @RequestParam String description, @RequestParam Long courseId) {
+    public String addTask(HttpSession session, @RequestParam String title, @RequestParam String description, @RequestParam Long course_id) {
         User user = (User) session.getAttribute("user");
         if(user != null) {
             if(user.getRole().equals("TEACHER")) {
-                Task task = new Task();
-                task.setTitle(title);
+                Task task = new Task(title, course_id);
                 task.setDescription(description);
                 taskService.save(task);
-                return "redirect:/course?id=" + courseId;
+                return "redirect:/course?id=" + course_id;
             }
             return "redirect:/course_lobby";
         }
@@ -138,7 +178,7 @@ public class CourseController {
                                                             @RequestParam("course_id") Long course_id) {
         try {
             if (file.isEmpty()) {
-                return "redirect:/course?id=" + course_id;
+                //return "redirect:/course?id=" + course_id;
             }
 
             User user = (User) session.getAttribute("user");
@@ -160,6 +200,7 @@ public class CourseController {
                     throw new RuntimeException(e);
                 }
 
+                System.out.println("=--------------------==============----------------    count " + taskSubmissionService.countByTaskIdAndUserId(taskId, user_id));
                 if(taskSubmissionService.countByTaskIdAndUserId(taskId, user_id) > 0) {
                     taskSubmissionService.deleteFile(taskSubmissionService.findPathByTaskIdAndUserId(taskId, user_id));
                     taskSubmissionService.deleteByTaskIdAndUserId(taskId, user_id);
@@ -191,5 +232,21 @@ public class CourseController {
         return "update_task_status";
     }
 
+    @GetMapping("/submission/{submission_id}/download")
+    @ResponseBody
+    public ResponseEntity<Resource> downloadSubmission(HttpSession session, @PathVariable Long submission_id) throws IOException {
+        User user = (User) session.getAttribute("user");
 
+        TaskSubmission submission = taskSubmissionService.findById(submission_id);
+        Task task = taskService.findById(submission.getTask_id());
+
+        if (!user.getRole().equals("TEACHER") && !submission.getUser_id().equals(user.getId())) {
+            throw new AccessDeniedException("Access denied");
+        }
+        Path filePath = Paths.get(submission.getFile_path());
+        Resource resource = new UrlResource(filePath.toUri());
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + submission.getFile_name() + "\"")
+                .body(resource);
+    }
 }

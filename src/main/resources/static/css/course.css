@@ -39,7 +39,14 @@
     font-size: 1.2rem;
     font-weight: 600;
     text-align: center;
-    color: #0A0F1A;
+}
+
+.course-title-page {
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    color: #FFFFFF;
 }
 
 .course-teacher-name {

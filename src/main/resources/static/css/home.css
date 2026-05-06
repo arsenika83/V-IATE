@@ -64,7 +64,6 @@
     background: linear-gradient(135deg, #fff, var(--accent-cyan));
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
 }
 
 .section-decor {

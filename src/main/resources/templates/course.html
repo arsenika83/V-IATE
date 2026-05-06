@@ -45,13 +45,13 @@
             <p class="task-description" th:text="${task.description}"></p>
 
             <div class="task-upload-form" th:with="submission=${taskSubmissions[task_number]}">
-                <div th:if="${submission != null}" th:with="status=${taskStatuses[task_number]}">
+                <div th:if="${submission != null}">
                     <div class="submission-info">
                         Ваше решение:
                         <a th:href="@{/submission/{id}/download(id=${submission.id})}" class="file-link" th:text="${submission.file_name}"></a>
                         (отправлено <span th:text="${#temporals.format(submission.submitted_at, 'dd.MM.yyyy HH:mm')}"></span>)
                     </div>
-                    <div th:class="'status-badge status-' + ${status.toLowerCase()}" th:text="${status == 'REVIEW' ? 'На проверке' : (status == 'ACCEPTED' ? 'Принято' : 'Отклонено')}"></div>
+                    <div th:class="'status-badge status-' + ${taskStatuses[task_number].toLowerCase()}" th:text="${taskStatuses[task_number] == 'REVIEW' ? 'На проверке' : (taskStatuses[task_number] == 'ACCEPTED' ? 'Принято' : 'Отклонено')}"></div>
                 </div>
                 <form class="upload-file-form" method="post" th:action="@{/task/{id}/submit(id=${task.id}, course_id=${task.course_id})}" enctype="multipart/form-data">
                     <input type="file" name="file">
@@ -64,7 +64,47 @@
         </div>
         <div th:if="${tasks.empty}" class="empty-placeholder">Нет заданий</div>
     </div>
-    <div th:if="${role != 'STUDENT'}" class="empty-placeholder" style="text-align:center; margin:3rem;">Доступно только для студентов</div>
+
+    <div class="task-container" th:if="${role == 'TEACHER'}">
+        <div class="card-header">➕ Добавить новое задание</div>
+        <div class="card-body">
+            <form method="post" th:action="@{/task/add}">
+                <input type="hidden" name="course_id" th:value="${course.id}"/>
+                <div class="mb-2">
+                    <input type="text" name="title" class="form-control" placeholder="Название задания" required>
+                </div>
+                <div class="mb-2">
+                    <textarea name="description" class="form-control" placeholder="Описание задания"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Создать</button>
+            </form>
+        </div>
+
+        <h2 class="section-title" style="margin-bottom:1rem;">📋 Задания</h2>
+        <div class="task" th:each="task_number : ${taskCount}" th:with="task=${tasks[task_number]}">
+            <p class="task-title" th:text="${task.title}"></p>
+            <p class="task-description" th:text="${task.description}"></p>
+
+            <div class="task-upload-form" th:with="submission=${taskSubmissions[task_number]}">
+                <div th:if="${submission != null}">
+                    <div class="submission-info">
+                        Ваше решение:
+                        <a th:href="@{/submission/{id}/download(id=${submission.id})}" class="file-link" th:text="${submission.file_name}"></a>
+                        (отправлено <span th:text="${#temporals.format(submission.submitted_at, 'dd.MM.yyyy HH:mm')}"></span>)
+                    </div>
+                    <div th:class="'status-badge status-' + ${taskStatuses[task_number].toLowerCase()}" th:text="${taskStatuses[task_number] == 'REVIEW' ? 'На проверке' : (taskStatuses[task_number] == 'ACCEPTED' ? 'Принято' : 'Отклонено')}"></div>
+                </div>
+                <form class="upload-file-form" method="post" th:action="@{/task/{id}/submit(id=${task.id}, course_id=${task.course_id})}" enctype="multipart/form-data">
+                    <input type="file" name="file">
+                    <button type="submit">
+                        <span th:if="${submission == null}">Отправить решение</span>
+                        <span th:if="${submission != null}">Заменить решение</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div th:if="${tasks.empty}" class="empty-placeholder">Нет заданий</div>
+    </div>
 </main>
 
 <footer class="site-footer">

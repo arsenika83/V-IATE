@@ -46,8 +46,14 @@
                 </div>
             </a>
         </div>
-        <div th:if="${role != 'STUDENT'}" class="empty-placeholder" style="text-align:center; padding:3rem;">
-            <p>Только для студентов</p>
+
+        <div class="course-container-student" th:if="${role == 'TEACHER'}">
+            <a class="course-a" th:each="course : ${teacher_courses}" th:href="@{/course?id={course_id}(course_id=${course.id})}">
+                <div class="course">
+                    <p class="course-title" th:text="${course.title}"></p>
+
+                </div>
+            </a>
         </div>
     </div>
 </main>

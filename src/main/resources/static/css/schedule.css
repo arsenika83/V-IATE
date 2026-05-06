@@ -28,11 +28,18 @@
     color: transparent;
 }
 
-.buttons-group, .flex-buttons {
+.flex-buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.75rem;
+}
+
+.buttons-group{
+    display: grid;
+    justify-content: center;
+    gap: 0.75rem;
+    grid-template-columns: repeat(7, 1fr);
 }
 
 .button-href {
@@ -44,6 +51,7 @@
     font-weight: 500;
     transition: all 0.2s ease;
     white-space: nowrap;
+    text-align: center;
 }
 
 .button-href:hover {

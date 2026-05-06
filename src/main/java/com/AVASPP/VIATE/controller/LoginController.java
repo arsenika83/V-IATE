@@ -37,7 +37,7 @@ public class LoginController {
 
             if (password.equals(user.getPassword())) {
                 session.setAttribute("user", user);
-                model.addAttribute("user_name", user.getFull_name()[0]);
+                model.addAttribute("user_name", user.getFull_name()[1]);
 
                 return "redirect:/";
             } else {

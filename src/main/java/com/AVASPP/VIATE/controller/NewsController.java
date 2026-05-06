@@ -19,7 +19,7 @@ public class NewsController {
     public String news(HttpSession session, Model model, @PathVariable Long id) {
         User user = (User) session.getAttribute("user");
         if(user != null) {
-            model.addAttribute("user_name", user.getFull_name()[0]);
+            model.addAttribute("user_name", user.getFull_name()[1]);
             model.addAttribute("login", user.getLogin());
         }
 

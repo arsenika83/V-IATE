@@ -14,4 +14,7 @@ public interface CourseRepository extends CrudRepository<Course, Long> {
 
     @Query("SELECT c FROM Course c WHERE c.group_id = :id")
     Iterable<Course> findAllByGroupId(@Param("id") long id);
+
+    @Query("SELECT c FROM Course c WHERE c.teacher_id = :id")
+    Iterable<Course> findAllByTeacherId(@Param("id") long id);
 }
