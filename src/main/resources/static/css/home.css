@@ -16,7 +16,7 @@
 .welcome-title {
     font-size: 2.2rem;
     font-weight: 600;
-    background: linear-gradient(135deg, #FFFFFF, var(--accent-cyan));
+    background: var(--accent-cyan);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -43,10 +43,7 @@
 
 /* Объявления (левая колонка) */
 .announcements-sidebar {
-    background: rgba(18, 25, 40, 0.5);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(0, 229, 255, 0.2);
-    border-radius: 28px;
+    border-radius: 10px;
     padding: 1.5rem;
     height: fit-content;
     position: sticky;
@@ -61,9 +58,10 @@
     font-size: 1.4rem;
     font-weight: 500;
     display: inline-block;
-    background: linear-gradient(135deg, #fff, var(--accent-cyan));
-    -webkit-background-clip: text;
-    background-clip: text;
+    background: var(--bg-light);
+    backdrop-filter: grayscale(75%);
+    padding: 1%;
+    border-radius: 10px;
 }
 
 .section-decor {
@@ -81,19 +79,21 @@
 }
 
 .announcement-card {
+    background: var(--bg-light);
     display: block;
+    backdrop-filter: blur(8px);
     padding: 0.8rem 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-left: 3px solid var(--accent-cyan);
-    border-radius: 16px;
+    border-radius: 10px;
     color: var(--text-secondary);
     transition: all 0.2s;
+    border: 1px solid var(--accent-cyan);
+    border-left: 3px solid var(--accent-cyan);
 }
 
 .announcement-card:hover {
     background: rgba(0, 229, 255, 0.08);
     transform: translateX(4px);
-    color: var(--accent-cyan);
+    color: var(--success-green);
 }
 
 /* Новости (правая колонка) */
@@ -108,20 +108,19 @@
 }
 
 .news-card {
-    background: rgba(18, 25, 40, 0.55);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(0, 229, 255, 0.2);
     border-radius: 24px;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     text-decoration: none;
     display: block;
+    box-shadow: 0 10px 20px -12px var(--success-green);
 }
 
 .news-card:hover {
     transform: translateY(-6px);
     border-color: var(--accent-cyan);
-    box-shadow: 0 20px 30px -12px rgba(0, 229, 255, 0.2);
+    box-shadow: 0 20px 30px -12px var(--success-green);
 }
 
 .news-card-inner {
@@ -187,7 +186,7 @@
 
 .btn-more-news:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.4);
+    box-shadow: 0 5px 15px var(--success-green);
     color: #0A0F1A;
 }
 
