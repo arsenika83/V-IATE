@@ -154,6 +154,11 @@
     margin-bottom: 1rem;
 }
 
+.news-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
 .read-more {
     font-size: 0.85rem;
     font-weight: 500;

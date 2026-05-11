@@ -72,7 +72,8 @@
 }
 
 .empty-check {
-    width: 100%;
+    width: 70%;
+    align-self: center;
 }
 
 .day-of-week,
@@ -87,14 +88,14 @@
 
 .day-of-week-today {
     border-left: 4px solid var(--accent-cyan);
-    background: rgba(0, 229, 255, 0.05);
+    background: rgba(0, 229, 255, 0.15);
 }
 
 .day-of-week h3,
 .day-of-week-today h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: var(--accent-cyan);
+    color: white;
     font-weight: 500;
 }
 

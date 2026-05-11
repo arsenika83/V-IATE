@@ -34,6 +34,10 @@ body {
     line-height: 1.5;
 }
 
+hr {
+    margin: 2% 0;
+}
+
 a {
     text-decoration: none;
     color: inherit;

@@ -1,8 +1,12 @@
 package com.AVASPP.VIATE.controller;
 
+import com.AVASPP.VIATE.entity.Group;
+import com.AVASPP.VIATE.entity.Student;
 import com.AVASPP.VIATE.entity.User;
 import com.AVASPP.VIATE.service.AnnouncementService;
+import com.AVASPP.VIATE.service.GroupService;
 import com.AVASPP.VIATE.service.NewsService;
+import com.AVASPP.VIATE.service.StudentService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +20,12 @@ public class HomeController {
 
     @Autowired
     private NewsService newsService;
-
     @Autowired
     private AnnouncementService announcementService;
+    @Autowired
+    private StudentService studentService;
+    @Autowired
+    private GroupService groupService;
 
     @GetMapping("/")
     public String index(HttpSession session, Model model) {
@@ -26,6 +33,13 @@ public class HomeController {
         if(user != null) {
             model.addAttribute("user_name", user.getFull_name()[1]);
             model.addAttribute("login", user.getLogin());
+
+            if(user.getRole().equals("STUDENT")) {
+
+                Student profile = studentService.findOrSaveStudent(user.getId());
+                model.addAttribute("group_id", profile.getGroup_id());
+                model.addAttribute("group_name", groupService.getGroupNameById(profile.getGroup_id()));
+            }
         }
 
         model.addAttribute("news", newsService.getLastArticles(10));

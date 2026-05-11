@@ -6,6 +6,7 @@
     <title>V‑IATE — Главная</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="/css/common.css" rel="stylesheet">
+    <link href="/css/schedule.css" rel="stylesheet">
     <link href="/css/home.css" rel="stylesheet">
 </head>
 <body>
@@ -43,8 +44,8 @@
         <p class="welcome-sub">Выбери курс, проверь расписание или почитай новости университета.</p>
     </div>
     <div class="welcome-block" th:if="${user_name == null}">
-        <h1 class="welcome-title">Добро пожаловать в V‑IATE</h1>
-        <p class="welcome-sub">Образовательный портал нового поколения. <a href="/login" class="highlight-link">Войдите</a>, чтобы получить доступ ко всем возможностям.</p>
+        <h1 class="welcome-title">Добро пожаловать на портал V‑IATE</h1>
+        <p class="welcome-sub"><a href="/login" class="highlight-link">Войдите</a>, чтобы получить доступ ко всем возможностям.</p>
     </div>
 
     <div class="home-grid">
@@ -62,6 +63,19 @@
         </aside>
 
         <section class="news-feed">
+            <div th:if="${user_name != null}">
+                <div class="section-header">
+                    <h2 class="section-title">Моё расписание</h2>
+                    <div class="section-decor"></div>
+                </div>
+                <div  class="groups-align" style="border: none; ">
+                    <div class="flex-buttons">
+                        <a th:class="button-href" th:href="@{/schedule/{id}(id=${group_id})}" th:text="${group_name}"></a>
+                    </div>
+                </div>
+                <hr>
+            </div>
+
             <div class="section-header">
                 <h2 class="section-title">Последние новости</h2>
                 <div class="section-decor"></div>
@@ -72,6 +86,9 @@
                         <div class="news-tag">Новость</div>
                         <h3 class="news-title" th:text="${article.title}">Заголовок</h3>
                         <p class="news-desc" th:text="${article.description}">Описание</p>
+
+                        <img class="news-image" th:src="${article.image_url}">
+
                         <div class="news-meta">
                             <span class="read-more">Читать →</span>
                         </div>
