@@ -6,6 +6,7 @@
     <title th:text="${group_name}">Расписание — V‑IATE</title>
     <link href="/css/common.css" rel="stylesheet">
     <link href="/css/schedule.css" rel="stylesheet">
+    <link rel="icon" href="/images/favicon.ico">
 </head>
 <body>
 
@@ -39,7 +40,7 @@
     <div class="schedule">
         <!-- Понедельник -->
         <div class="empty-check" th:if="${monday_lessons.length > 0}">
-            <div class="day-of-week">
+            <div class="day-of-week" th:if="${day_of_week != 1}">
                 <h3 th:text="${monday_lessons[0].day}"></h3>
                 <div class="lesson" th:each="lesson : ${monday_lessons}">
                     <div class="container-type-name">
@@ -73,7 +74,7 @@
         </div>
         <!-- Вторник -->
         <div class="empty-check" th:if="${tuesday_lessons.length > 0}">
-            <div class="day-of-week">
+            <div class="day-of-week" th:if="${day_of_week != 2}">
                 <h3 th:text="${tuesday_lessons[0].day}"></h3>
                 <div class="lesson" th:each="lesson : ${tuesday_lessons}">
                     <div class="container-type-name">
@@ -107,7 +108,7 @@
         </div>
         <!-- Среда -->
         <div class="empty-check" th:if="${wednesday_lessons.length > 0}">
-            <div class="day-of-week">
+            <div class="day-of-week" th:if="${day_of_week != 3}">
                 <h3 th:text="${wednesday_lessons[0].day}"></h3>
                 <div class="lesson" th:each="lesson : ${wednesday_lessons}">
                     <div class="container-type-name">
@@ -174,7 +175,7 @@
         </div>
         <!-- Пятница -->
         <div class="empty-check" th:if="${friday_lessons.length > 0}">
-            <div class="day-of-week">
+            <div class="day-of-week" th:if="${day_of_week != 5}">
                 <h3 th:text="${friday_lessons[0].day}"></h3>
                 <div class="lesson" th:each="lesson : ${friday_lessons}">
                     <div class="container-type-name">
@@ -208,7 +209,7 @@
         </div>
         <!-- Суббота -->
         <div class="empty-check" th:if="${saturday_lessons.length > 0}">
-            <div class="day-of-week">
+            <div class="day-of-week" th:if="${day_of_week != 6}">
                 <h3 th:text="${saturday_lessons[0].day}"></h3>
                 <div class="lesson" th:each="lesson : ${saturday_lessons}">
                     <div class="container-type-name">
