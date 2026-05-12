@@ -7,11 +7,12 @@
 .news-container-standalone {
     max-width: 900px;
     width: 100%;
-    background: rgba(18, 25, 40, 0.6);
+    background: var(--bg-light);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(0, 229, 255, 0.2);
-    border-radius: 32px;
+    border: 2px solid var(--border-glass);
+    border-radius: 15px;
     overflow: hidden;
+    box-shadow: 0 10px 20px -12px var(--success-green);
 }
 
 .article-title-container {

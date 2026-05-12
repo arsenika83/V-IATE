@@ -9,7 +9,7 @@
 }
 
 .groups-align {
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(18px);
     border: 2px solid var(--border-glass);
     border-radius: 15px;
     padding: 1.5rem;
@@ -73,30 +73,37 @@
 }
 
 .empty-check {
-    width: 70%;
     align-self: center;
+    width: 90%;
 }
 
-.day-of-week,
-.day-of-week-today {
+.day-of-week {
     backdrop-filter: blur(8px);
     border: 2px solid var(--border-glass);
     border-radius: 24px;
     padding: 1.2rem;
     transition: all 0.2s;
     box-shadow: 0 10px 20px -12px var(--success-green);
+    display: flex;
 }
 
 .day-of-week-today {
-    border-left: 4px solid var(--bg-red);
+    color: var(--bg-red);
 }
 
-.day-of-week h3,
-.day-of-week-today h3 {
+.day-of-week h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     color: var(--text-primary);
     font-weight: 500;
+}
+
+.week-odd,
+.week-even {
+    display: flex;
+    flex-direction: column;
+    margin: 1%;
+    width: 50%;
 }
 
 .lesson {
@@ -108,10 +115,6 @@
     transition: all 0.2s;
 }
 
-.lesson:hover {
-    background: rgba(0, 229, 255, 0.02);
-}
-
 .container-type-name {
     display: flex;
     flex-wrap: wrap;
@@ -120,9 +123,7 @@
 }
 
 .lesson-type {
-    padding: 0.2rem 0.8rem;
     border-radius: 40px;
-    font-size: 0.8rem;
     font-weight: 500;
     color: var(--accent-cyan);
 }

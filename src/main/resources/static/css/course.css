@@ -61,25 +61,24 @@
     max-width: 900px;
     margin: 2rem auto;
     padding: 1.5rem;
-    background: var(--bg-light);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(0, 229, 255, 0.2);
+    backdrop-filter: blur(18px);
+    border: 2px solid var(--border-glass);
     border-radius: 28px;
     max-height: 70vh;
     overflow-y: auto;
+    box-shadow: 0 10px 20px -12px var(--success-green);
 }
 
 .task {
     background: var(--bg-light);
-    border-radius: 20px;
+    border-radius: 15px;
     padding: 1.2rem;
     margin-bottom: 1.2rem;
-    border: 1px solid rgba(0, 229, 255, 0.1);
     transition: 0.2s;
 }
 
 .task:hover {
-    border-color: rgba(0, 229, 255, 0.4);
+    border-color: var(--accent-cyan);
 }
 
 .task-title {
@@ -110,8 +109,8 @@
 
 .upload-file-form input[type="file"] {
     background: var(--bg-light);
-    border: 1px solid rgba(0,229,255,0.3);
-    border-radius: 40px;
+    border: 2px solid var(--accent-cyan);
+    border-radius: 15px;
     padding: 0.5rem 1rem;
     color: var(--text-primary);
     font-size: 0.85rem;
@@ -120,7 +119,7 @@
 .upload-file-form button {
     background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
     border: none;
-    border-radius: 40px;
+    border-radius: 10px;
     padding: 0.6rem 1.2rem;
     color: #0A0F1A;
     font-weight: 600;
@@ -130,7 +129,6 @@
 
 .upload-file-form button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.4);
 }
 
 /* статусы */

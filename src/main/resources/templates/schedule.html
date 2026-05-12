@@ -40,207 +40,255 @@
     <div class="schedule">
         <!-- Понедельник -->
         <div class="empty-check" th:if="${monday_lessons.length > 0}">
-            <div class="day-of-week" th:if="${day_of_week != 1}">
-                <h3 th:text="${monday_lessons[0].day}"></h3>
-                <div class="lesson" th:each="lesson : ${monday_lessons}">
-                    <div class="container-type-name">
-                        <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
-                        <div class="lesson-name" th:text="${lesson.name}"></div>
+            <h3 th:text="${monday_lessons[0].day}" th:if="${day_of_week != 1}"></h3>
+            <h3 class="day-of-week-today" th:text="${monday_lessons[0].day} + ' (сегодня)'" th:if="${day_of_week == 1}"></h3>
+
+            <div class="day-of-week">
+
+                <div class="week-odd">
+                    <h4>Нечётная неделя</h4>
+                    <div class="lesson" th:each="lesson : ${monday_lessons}" th:if="${lesson.week == 'Нечётная неделя' or lesson.week == 'Еженедельно'}">
+                        <div class="container-type-name">
+                            <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
+                            <div class="lesson-name" th:text="${lesson.name}"></div>
+                        </div>
+                        <div class="lesson-week" th:text="${lesson.week}"></div>
+                        <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
+                        <div class="container-time-teacher">
+                            <div class="lesson-time" th:text="${lesson.time}"></div>
+                            <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                        </div>
                     </div>
-                    <div class="lesson-week" th:text="${lesson.week}"></div>
-                    <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
-                    <div class="container-time-teacher">
-                        <div class="lesson-time" th:text="${lesson.time}"></div>
-                        <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                </div>
+
+                <div class="week-even">
+                    <h4>Чётная неделя</h4>
+                    <div class="lesson" th:each="lesson : ${monday_lessons}" th:if="${lesson.week == 'Чётная неделя' or lesson.week == 'Еженедельно'}">
+                        <div class="container-type-name">
+                            <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
+                            <div class="lesson-name" th:text="${lesson.name}"></div>
+                        </div>
+                        <div class="lesson-week" th:text="${lesson.week}"></div>
+                        <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
+                        <div class="container-time-teacher">
+                            <div class="lesson-time" th:text="${lesson.time}"></div>
+                            <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="day-of-week-today" th:if="${day_of_week == 1}">
-                <h3 th:text="${monday_lessons[0].day}"></h3>
-                <div class="lesson" th:each="lesson : ${monday_lessons}">
-                    <div class="container-type-name">
-                        <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
-                        <div class="lesson-name" th:text="${lesson.name}"></div>
-                    </div>
-                    <div class="lesson-week" th:text="${lesson.week}"></div>
-                    <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
-                    <div class="container-time-teacher">
-                        <div class="lesson-time" th:text="${lesson.time}"></div>
-                        <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
-                    </div>
-                </div>
-            </div>
         </div>
+
         <!-- Вторник -->
         <div class="empty-check" th:if="${tuesday_lessons.length > 0}">
-            <div class="day-of-week" th:if="${day_of_week != 2}">
-                <h3 th:text="${tuesday_lessons[0].day}"></h3>
-                <div class="lesson" th:each="lesson : ${tuesday_lessons}">
-                    <div class="container-type-name">
-                        <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
-                        <div class="lesson-name" th:text="${lesson.name}"></div>
+            <h3 th:text="${tuesday_lessons[0].day}" th:if="${day_of_week != 2}"></h3>
+            <h3 class="day-of-week-today" th:text="${tuesday_lessons[0].day} + ' (сегодня)'" th:if="${day_of_week == 2}"></h3>
+
+            <div class="day-of-week">
+
+                <div class="week-odd">
+                    <h4>Нечётная неделя</h4>
+                    <div class="lesson" th:each="lesson : ${tuesday_lessons}" th:if="${lesson.week == 'Нечётная неделя' or lesson.week == 'Еженедельно'}">
+                        <div class="container-type-name">
+                            <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
+                            <div class="lesson-name" th:text="${lesson.name}"></div>
+                        </div>
+                        <div class="lesson-week" th:text="${lesson.week}"></div>
+                        <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
+                        <div class="container-time-teacher">
+                            <div class="lesson-time" th:text="${lesson.time}"></div>
+                            <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                        </div>
                     </div>
-                    <div class="lesson-week" th:text="${lesson.week}"></div>
-                    <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
-                    <div class="container-time-teacher">
-                        <div class="lesson-time" th:text="${lesson.time}"></div>
-                        <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                </div>
+
+                <div class="week-even">
+                    <h4>Чётная неделя</h4>
+                    <div class="lesson" th:each="lesson : ${tuesday_lessons}" th:if="${lesson.week == 'Чётная неделя' or lesson.week == 'Еженедельно'}">
+                        <div class="container-type-name">
+                            <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
+                            <div class="lesson-name" th:text="${lesson.name}"></div>
+                        </div>
+                        <div class="lesson-week" th:text="${lesson.week}"></div>
+                        <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
+                        <div class="container-time-teacher">
+                            <div class="lesson-time" th:text="${lesson.time}"></div>
+                            <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="day-of-week-today" th:if="${day_of_week == 2}">
-                <h3 th:text="${tuesday_lessons[0].day}"></h3>
-                <div class="lesson" th:each="lesson : ${tuesday_lessons}">
-                    <div class="container-type-name">
-                        <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
-                        <div class="lesson-name" th:text="${lesson.name}"></div>
-                    </div>
-                    <div class="lesson-week" th:text="${lesson.week}"></div>
-                    <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
-                    <div class="container-time-teacher">
-                        <div class="lesson-time" th:text="${lesson.time}"></div>
-                        <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
-                    </div>
-                </div>
-            </div>
         </div>
+
         <!-- Среда -->
         <div class="empty-check" th:if="${wednesday_lessons.length > 0}">
-            <div class="day-of-week" th:if="${day_of_week != 3}">
-                <h3 th:text="${wednesday_lessons[0].day}"></h3>
-                <div class="lesson" th:each="lesson : ${wednesday_lessons}">
-                    <div class="container-type-name">
-                        <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
-                        <div class="lesson-name" th:text="${lesson.name}"></div>
+            <h3 th:text="${wednesday_lessons[0].day}" th:if="${day_of_week != 3}"></h3>
+            <h3 class="day-of-week-today" th:text="${wednesday_lessons[0].day} + ' (сегодня)'" th:if="${day_of_week == 3}"></h3>
+
+            <div class="day-of-week">
+
+                <div class="week-odd">
+                    <h4>Нечётная неделя</h4>
+                    <div class="lesson" th:each="lesson : ${wednesday_lessons}" th:if="${lesson.week == 'Нечётная неделя' or lesson.week == 'Еженедельно'}">
+                        <div class="container-type-name">
+                            <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
+                            <div class="lesson-name" th:text="${lesson.name}"></div>
+                        </div>
+                        <div class="lesson-week" th:text="${lesson.week}"></div>
+                        <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
+                        <div class="container-time-teacher">
+                            <div class="lesson-time" th:text="${lesson.time}"></div>
+                            <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                        </div>
                     </div>
-                    <div class="lesson-week" th:text="${lesson.week}"></div>
-                    <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
-                    <div class="container-time-teacher">
-                        <div class="lesson-time" th:text="${lesson.time}"></div>
-                        <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                </div>
+
+                <div class="week-even">
+                    <h4>Чётная неделя</h4>
+                    <div class="lesson" th:each="lesson : ${wednesday_lessons}" th:if="${lesson.week == 'Чётная неделя' or lesson.week == 'Еженедельно'}">
+                        <div class="container-type-name">
+                            <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
+                            <div class="lesson-name" th:text="${lesson.name}"></div>
+                        </div>
+                        <div class="lesson-week" th:text="${lesson.week}"></div>
+                        <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
+                        <div class="container-time-teacher">
+                            <div class="lesson-time" th:text="${lesson.time}"></div>
+                            <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="day-of-week-today" th:if="${day_of_week == 3}">
-                <h3 th:text="${wednesday_lessons[0].day}"></h3>
-                <div class="lesson" th:each="lesson : ${wednesday_lessons}">
-                    <div class="container-type-name">
-                        <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
-                        <div class="lesson-name" th:text="${lesson.name}"></div>
-                    </div>
-                    <div class="lesson-week" th:text="${lesson.week}"></div>
-                    <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
-                    <div class="container-time-teacher">
-                        <div class="lesson-time" th:text="${lesson.time}"></div>
-                        <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
-                    </div>
-                </div>
-            </div>
         </div>
+
         <!-- Четверг -->
         <div class="empty-check" th:if="${thursday_lessons.length > 0}">
-            <div class="day-of-week" th:if="${day_of_week != 4}">
-                <h3 th:text="${thursday_lessons[0].day}"></h3>
-                <div class="lesson" th:each="lesson : ${thursday_lessons}">
-                    <div class="container-type-name">
-                        <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
-                        <div class="lesson-name" th:text="${lesson.name}"></div>
+            <h3 th:text="${thursday_lessons[0].day}" th:if="${day_of_week != 4}"></h3>
+            <h3 class="day-of-week-today" th:text="${thursday_lessons[0].day} + ' (сегодня)'" th:if="${day_of_week == 4}"></h3>
+
+            <div class="day-of-week">
+
+                <div class="week-odd">
+                    <h4>Нечётная неделя</h4>
+                    <div class="lesson" th:each="lesson : ${thursday_lessons}" th:if="${lesson.week == 'Нечётная неделя' or lesson.week == 'Еженедельно'}">
+                        <div class="container-type-name">
+                            <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
+                            <div class="lesson-name" th:text="${lesson.name}"></div>
+                        </div>
+                        <div class="lesson-week" th:text="${lesson.week}"></div>
+                        <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
+                        <div class="container-time-teacher">
+                            <div class="lesson-time" th:text="${lesson.time}"></div>
+                            <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                        </div>
                     </div>
-                    <div class="lesson-week" th:text="${lesson.week}"></div>
-                    <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
-                    <div class="container-time-teacher">
-                        <div class="lesson-time" th:text="${lesson.time}"></div>
-                        <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                </div>
+
+                <div class="week-even">
+                    <h4>Чётная неделя</h4>
+                    <div class="lesson" th:each="lesson : ${thursday_lessons}" th:if="${lesson.week == 'Чётная неделя' or lesson.week == 'Еженедельно'}">
+                        <div class="container-type-name">
+                            <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
+                            <div class="lesson-name" th:text="${lesson.name}"></div>
+                        </div>
+                        <div class="lesson-week" th:text="${lesson.week}"></div>
+                        <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
+                        <div class="container-time-teacher">
+                            <div class="lesson-time" th:text="${lesson.time}"></div>
+                            <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="day-of-week-today" th:if="${day_of_week == 4}">
-                <h3 th:text="${thursday_lessons[0].day}"></h3>
-                <div class="lesson" th:each="lesson : ${thursday_lessons}">
-                    <div class="container-type-name">
-                        <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
-                        <div class="lesson-name" th:text="${lesson.name}"></div>
-                    </div>
-                    <div class="lesson-week" th:text="${lesson.week}"></div>
-                    <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
-                    <div class="container-time-teacher">
-                        <div class="lesson-time" th:text="${lesson.time}"></div>
-                        <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
-                    </div>
-                </div>
-            </div>
+
         </div>
+
         <!-- Пятница -->
         <div class="empty-check" th:if="${friday_lessons.length > 0}">
-            <div class="day-of-week" th:if="${day_of_week != 5}">
-                <h3 th:text="${friday_lessons[0].day}"></h3>
-                <div class="lesson" th:each="lesson : ${friday_lessons}">
-                    <div class="container-type-name">
-                        <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
-                        <div class="lesson-name" th:text="${lesson.name}"></div>
+            <h3 th:text="${friday_lessons[0].day}" th:if="${day_of_week != 5}"></h3>
+            <h3 class="day-of-week-today" th:text="${friday_lessons[0].day} + ' (сегодня)'" th:if="${day_of_week == 5}"></h3>
+
+            <div class="day-of-week">
+
+                <div class="week-odd">
+                    <h4>Нечётная неделя</h4>
+                    <div class="lesson" th:each="lesson : ${friday_lessons}" th:if="${lesson.week == 'Нечётная неделя' or lesson.week == 'Еженедельно'}">
+                        <div class="container-type-name">
+                            <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
+                            <div class="lesson-name" th:text="${lesson.name}"></div>
+                        </div>
+                        <div class="lesson-week" th:text="${lesson.week}"></div>
+                        <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
+                        <div class="container-time-teacher">
+                            <div class="lesson-time" th:text="${lesson.time}"></div>
+                            <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                        </div>
                     </div>
-                    <div class="lesson-week" th:text="${lesson.week}"></div>
-                    <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
-                    <div class="container-time-teacher">
-                        <div class="lesson-time" th:text="${lesson.time}"></div>
-                        <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                </div>
+
+                <div class="week-even">
+                    <h4>Чётная неделя</h4>
+                    <div class="lesson" th:each="lesson : ${friday_lessons}" th:if="${lesson.week == 'Чётная неделя' or lesson.week == 'Еженедельно'}">
+                        <div class="container-type-name">
+                            <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
+                            <div class="lesson-name" th:text="${lesson.name}"></div>
+                        </div>
+                        <div class="lesson-week" th:text="${lesson.week}"></div>
+                        <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
+                        <div class="container-time-teacher">
+                            <div class="lesson-time" th:text="${lesson.time}"></div>
+                            <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="day-of-week-today" th:if="${day_of_week == 5}">
-                <h3 th:text="${friday_lessons[0].day}"></h3>
-                <div class="lesson" th:each="lesson : ${friday_lessons}">
-                    <div class="container-type-name">
-                        <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
-                        <div class="lesson-name" th:text="${lesson.name}"></div>
-                    </div>
-                    <div class="lesson-week" th:text="${lesson.week}"></div>
-                    <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
-                    <div class="container-time-teacher">
-                        <div class="lesson-time" th:text="${lesson.time}"></div>
-                        <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
-                    </div>
-                </div>
-            </div>
         </div>
+
         <!-- Суббота -->
         <div class="empty-check" th:if="${saturday_lessons.length > 0}">
-            <div class="day-of-week" th:if="${day_of_week != 6}">
-                <h3 th:text="${saturday_lessons[0].day}"></h3>
-                <div class="lesson" th:each="lesson : ${saturday_lessons}">
-                    <div class="container-type-name">
-                        <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
-                        <div class="lesson-name" th:text="${lesson.name}"></div>
+            <h3 th:text="${saturday_lessons[0].day}" th:if="${day_of_week != 6}"></h3>
+            <h3 class="day-of-week-today" th:text="${saturday_lessons[0].day} + ' (сегодня)'" th:if="${day_of_week == 6}"></h3>
+
+            <div class="day-of-week">
+                <div class="week-odd">
+                    <h4>Нечётная неделя</h4>
+                    <div class="lesson" th:each="lesson : ${saturday_lessons}" th:if="${lesson.week == 'Нечётная неделя' or lesson.week == 'Еженедельно'}">
+                        <div class="container-type-name">
+                            <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
+                            <div class="lesson-name" th:text="${lesson.name}"></div>
+                        </div>
+                        <div class="lesson-week" th:text="${lesson.week}"></div>
+                        <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
+                        <div class="container-time-teacher">
+                            <div class="lesson-time" th:text="${lesson.time}"></div>
+                            <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                        </div>
                     </div>
-                    <div class="lesson-week" th:text="${lesson.week}"></div>
-                    <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
-                    <div class="container-time-teacher">
-                        <div class="lesson-time" th:text="${lesson.time}"></div>
-                        <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                </div>
+
+                <div class="week-even">
+                    <h4>Чётная неделя</h4>
+                    <div class="lesson" th:each="lesson : ${saturday_lessons}" th:if="${lesson.week == 'Чётная неделя' or lesson.week == 'Еженедельно'}">
+                        <div class="container-type-name">
+                            <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
+                            <div class="lesson-name" th:text="${lesson.name}"></div>
+                        </div>
+                        <div class="lesson-week" th:text="${lesson.week}"></div>
+                        <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
+                        <div class="container-time-teacher">
+                            <div class="lesson-time" th:text="${lesson.time}"></div>
+                            <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="day-of-week-today" th:if="${day_of_week == 6}">
-                <h3 th:text="${saturday_lessons[0].day}"></h3>
-                <div class="lesson" th:each="lesson : ${saturday_lessons}">
-                    <div class="container-type-name">
-                        <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
-                        <div class="lesson-name" th:text="${lesson.name}"></div>
-                    </div>
-                    <div class="lesson-week" th:text="${lesson.week}"></div>
-                    <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
-                    <div class="container-time-teacher">
-                        <div class="lesson-time" th:text="${lesson.time}"></div>
-                        <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
-                    </div>
-                </div>
-            </div>
         </div>
+
     </div>
 </main>
 
