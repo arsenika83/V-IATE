@@ -25,6 +25,8 @@
 html {
     scroll-behavior: smooth;
     height: 100%;
+    scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.1);
+    scrollbar-width: thin;
 }
 
 body {

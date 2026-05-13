@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>V‑IATE — Карта</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
+    <link href="/css/schedule.css" rel="stylesheet">
+    <link href="/css/home.css" rel="stylesheet">
+    <link rel="icon" href="/images/favicon.ico">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-container">
+        <a href="/" class="logo-link">
+            <img src="/images/logo.png" alt="V-IATE" class="logo-img">
+        </a>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a href="/" class="nav-link active">Главная</a></li>
+                <li><a href="/group" class="nav-link">Расписание</a></li>
+                <li><a href="/course_lobby" class="nav-link">Курсы</a></li>
+                <li><a href="/journal" class="nav-link">Журналы</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <a th:if="${user_name == null}" href="/login" class="btn-login">Вход</a>
+            <div th:if="${user_name != null}" class="user-profile">
+                <span class="user-greeting" th:text="${user_name}"></span>
+                <a href="/profile" class="profile-link">
+                    <img src="/images/user.png" alt="Профиль" class="user-avatar">
+                </a>
+                <a href="/logout" class="logout-link">Выйти</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="main-content">
+    <div class="groups-page">
+        <div class="map-container">
+            <img class="map-image" src="images/map_scheme.png">
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <p class="copyright">© 2025–2026 V‑IATE — Студенческий портал</p>
+        <div class="footer-links">
+            <a href="#">О проекте</a>
+            <a href="#">Поддержка</a>
+            <a href="#">Конфиденциальность</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
