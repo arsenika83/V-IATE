@@ -2,9 +2,8 @@
 .profile-info-container {
     max-width: 700px;
     margin: 2rem auto;
-    background: rgba(18, 25, 40, 0.6);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(0, 229, 255, 0.2);
+    border: 2px solid var(--border-glass);
     border-radius: 32px;
     padding: 2rem;
     display: flex;
@@ -16,7 +15,7 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+    border-bottom: 1px solid var(--accent-cyan);;
     padding-bottom: 0.5rem;
 }
 

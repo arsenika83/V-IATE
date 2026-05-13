@@ -33,7 +33,7 @@ body {
     background: var(--bg-dark);
     background-image: url("../images/background_image.png");
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     min-height: 100vh;
     color: var(--text-primary);
     line-height: 1.5;
@@ -70,7 +70,7 @@ body {
 .site-header {
     background: rgba(10, 15, 26, 0.85);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+    border-bottom: 1px solid var(--accent-cyan);
     padding: 0.8rem 2rem;
     position: sticky;
     top: 0;
@@ -127,21 +127,19 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0.5rem 1.5rem;
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
-    border-radius: 40px;
-    color: #0A0F1A;
+    border: 2px solid var(--border-glass);
+    border-radius: 15px;
+    color: white;
     font-weight: 600;
     transition: transform 0.2s, box-shadow 0.2s;
-    border: none;
     cursor: pointer;
     font-size: 0.9rem;
     min-width: 100px;
     text-align: center;
 }
 .btn-login:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.4);
-    color: #0A0F1A;
+    transform: translateY(-4px);
+    color: var(--accent-cyan);;
 }
 
 /* Блок пользователя (когда залогинен) */
@@ -158,7 +156,7 @@ body {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    border: 2px solid var(--accent-cyan);
+    border: 2px solid var(--accent-blue);
     object-fit: cover;
 }
 
@@ -206,13 +204,14 @@ body {
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
+    color: var(--text-light);
 }
 .footer-links {
     display: flex;
     gap: 1.5rem;
+    color: var(--text-light);
 }
 .footer-links a {
-    color: var(--text-secondary);
     font-size: 0.85rem;
     transition: color 0.2s;
 }
@@ -220,7 +219,7 @@ body {
     color: var(--accent-cyan);
 }
 .copyright {
-    color: var(--text-secondary);
+    color: var(--text-light);
     font-size: 0.85rem;
 }
 
