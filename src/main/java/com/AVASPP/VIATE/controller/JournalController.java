@@ -1,15 +1,20 @@
 package com.AVASPP.VIATE.controller;
 
 import com.AVASPP.VIATE.entity.Group;
+import com.AVASPP.VIATE.entity.Journal;
 import com.AVASPP.VIATE.entity.Student;
 import com.AVASPP.VIATE.entity.User;
 import com.AVASPP.VIATE.service.GroupService;
+import com.AVASPP.VIATE.service.JournalService;
 import com.AVASPP.VIATE.service.StudentService;
+import com.AVASPP.VIATE.service.StudentStatisticService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class JournalController {
@@ -19,7 +24,48 @@ public class JournalController {
     @Autowired
     private GroupService groupService;
 
-    @GetMapping("/journal")
+    @Autowired
+    private JournalService journalService;
+
+    @Autowired
+    private StudentStatisticService studentStatisticService;
+
+    @GetMapping("/journal_lobby")
+    public String journal_lobby(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+
+        if(user != null) {
+            Long id = user.getId();
+            String role = user.getRole();
+
+            if(role.contains("STUDENT")) {
+                Student student = studentService.findOrSaveStudent(id);
+                Group group = groupService.findById(student.getGroup_id());
+
+                List<Journal> journals = journalService.findByGroupId(group.getId());
+
+                String teacher_name = "Перетятько Л.О.";
+
+
+                model.addAttribute("profile", student);
+                model.addAttribute("group", group);
+                model.addAttribute("journals", journals);
+                model.addAttribute("teacher_name", teacher_name);
+            }
+            else if(role.contains("TEACHER")) {
+
+            }
+            else if(role.contains("ADMIN")) {
+
+            }
+            return "journal_lobby";
+        }
+        else {
+            return "redirect:/login";
+        }
+    }
+
+    @GetMapping("/journal/{id}")
     public String journal(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
 
@@ -28,10 +74,17 @@ public class JournalController {
             String role = user.getRole();
 
             if(role.contains("STUDENT")) {
-                Student profile = studentService.findOrSaveStudent(id);
-                Group group = groupService.findById(profile.getGroup_id());
-                model.addAttribute("profile", profile);
+                Student student = studentService.findOrSaveStudent(id);
+                Group group = groupService.findById(student.getGroup_id());
+
+                List<Journal> journals = journalService.findByGroupId(group.getId());
+
+                String teacher_name = "Перетятько Л.О.";
+
+                model.addAttribute("profile", student);
                 model.addAttribute("group", group);
+                model.addAttribute("journals", journals);
+                model.addAttribute("teacher_name", teacher_name);
             }
             else if(role.contains("TEACHER")) {
 
@@ -39,7 +92,7 @@ public class JournalController {
             else if(role.contains("ADMIN")) {
 
             }
-            return "journal";
+            return "journal_lobby";
         }
         else {
             return "redirect:/login";

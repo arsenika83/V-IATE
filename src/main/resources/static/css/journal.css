@@ -1,0 +1,105 @@
+.journal-lobby-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.journal-container-student {
+    max-width: 1200px;
+    margin: 2rem auto;
+
+    backdrop-filter: blur(18px);
+    border: 2px solid var(--border-glass);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.2s;
+    box-shadow: 0 10px 20px -12px var(--success-green);
+    width: 80%;
+    align-self: center;
+}
+
+.journal-a {
+    text-decoration: none;
+}
+
+.journal {
+    backdrop-filter: blur(8px);
+    border: 2px solid var(--border-glass);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1%;
+}
+
+.journal:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 20px 35px -12px var(--success-green);
+}
+
+.journal-title {
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: left;
+    width: 90%;
+    align-content: center;
+}
+
+.journal-title-page {
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-primary);;
+}
+
+.journal-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.journal-teacher {
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: auto;
+    font-size: medium;
+}
+
+.journal-hours {
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: auto;
+    font-size: medium;
+}
+
+.journal-type-lecture,
+.journal-type-seminar,
+.journal-type-lab {
+    padding: 1rem;
+    text-align: center;
+    color: var(--bg-light);
+    font-size: 0.9rem;
+    margin: 1%;
+    border-radius: 15px;
+    width: 5%;
+}
+
+.journal-type-lecture {
+    background: var(--accent-blue);
+}
+
+.journal-type-lab {
+    background: var(--bg-red);
+}
+
+.journal-type-seminar {
+    background: var(--accent-cyan);
+}

@@ -20,7 +20,7 @@
                 <li><a href="/" class="nav-link">Главная</a></li>
                 <li><a href="/group" class="nav-link active">Расписание</a></li>
                 <li><a href="/course_lobby" class="nav-link">Курсы</a></li>
-                <li><a href="/journal" class="nav-link">Журналы</a></li>
+                <li><a href="/journal_lobby" class="nav-link">Журналы</a></li>
             </ul>
         </nav>
         <div class="user-actions">
@@ -37,6 +37,7 @@
 </header>
 
 <main class="main-content">
+    <h1 class="page-title" th:text="${group_name}"></h1>
     <div class="schedule">
         <!-- Понедельник -->
         <div class="empty-check" th:if="${monday_lessons.length > 0}">

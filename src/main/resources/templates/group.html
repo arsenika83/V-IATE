@@ -21,7 +21,7 @@
                 <li><a href="/" class="nav-link">Главная</a></li>
                 <li><a href="/group" class="nav-link active">Расписание</a></li>
                 <li><a href="/course_lobby" class="nav-link">Курсы</a></li>
-                <li><a href="/journal" class="nav-link">Журналы</a></li>
+                <li><a href="/journal_lobby" class="nav-link">Журналы</a></li>
             </ul>
         </nav>
         <div class="user-actions">
@@ -39,7 +39,7 @@
 
 <main class="main-content">
 
-    <!-- Поисковая панель -->
+    <!--
     <div class="search-container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -53,12 +53,10 @@
                     <i class="fas fa-times-circle clear-search" id="clearSearch"></i>
                 </div>
 
-                <!-- Быстрые фильтры -->
                 <div class="mt-3" id="quickFilters">
                     <span class="search-tag" data-filter="course_1">Первый курс</span>
                 </div>
 
-                <!-- Статистика поиска -->
                 <div class="search-stats" id="searchStats">
                     <span id="resultCount"></span>
                     <span id="searchQuery"></span>
@@ -66,6 +64,7 @@
             </div>
         </div>
     </div>
+    -->
 
     <div class="groups-page">
         <div th:if="${user_name != null}" class="groups-align">

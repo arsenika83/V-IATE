@@ -22,7 +22,7 @@
                 <li><a href="/" class="nav-link active">Главная</a></li>
                 <li><a href="/group" class="nav-link">Расписание</a></li>
                 <li><a href="/course_lobby" class="nav-link">Курсы</a></li>
-                <li><a href="/journal" class="nav-link">Журналы</a></li>
+                <li><a href="/journal_lobby" class="nav-link">Журналы</a></li>
             </ul>
         </nav>
         <div class="user-actions">
@@ -77,6 +77,31 @@
                 <hr>
             </div>
 
+            <div th:if="${user_name != null}">
+                <div class="section-header">
+                    <h2 class="section-title">Моя успеваемость</h2>
+                    <div class="section-decor"></div>
+                </div>
+                <div class="groups-align" style="border: none; width: 100% ">
+                    <div class="pie-wrapper">
+                        <div class="pie">
+                            <canvas id="pieCanvas" style="width:100%; height:100%; display: block;"></canvas>
+                            <div class="pie-center">
+                                <span id="totalValue" th:text="${grades[3]}"></span>
+                                <span>Всего</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- панель легенды и управления -->
+                    <div class="legend-panel">
+                        <div class="legend-title">Оценки</div>
+                        <ul class="legend-list" id="legendList"></ul>
+                    </div>
+                </div>
+                <hr>
+            </div>
+
             <div class="section-header">
                 <h2 class="section-title">Последние новости</h2>
                 <div class="section-decor"></div>
@@ -110,6 +135,12 @@
     </div>
 </main>
 
+<div th:if="${user_name != null}">
+    <p id="three_grade" th:text="${grades[0]}"></p>
+    <p id="four_grade" th:text="${grades[1]}"></p>
+    <p id="five_grade" th:text="${grades[2]}"></p>
+</div>
+
 <footer class="site-footer">
     <div class="footer-inner">
         <p class="copyright">© 2025–2026 V‑IATE — Студенческий портал</p>
@@ -121,5 +152,8 @@
     </div>
 </footer>
 
+
 </body>
+
+<script src="/js/pie_chart.js"></script>
 </html>

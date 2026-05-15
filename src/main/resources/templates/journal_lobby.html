@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${article.title}">Новость — V‑IATE</title>
+    <title>Журналы — V‑IATE</title>
     <link href="/css/common.css" rel="stylesheet">
-    <link href="/css/news.css" rel="stylesheet">
+    <link href="/css/schedule.css" rel="stylesheet">
+    <link href="/css/journal.css" rel="stylesheet">
     <link rel="icon" href="/images/favicon.ico">
 </head>
 <body>
@@ -20,13 +21,13 @@
                 <li><a href="/" class="nav-link">Главная</a></li>
                 <li><a href="/group" class="nav-link">Расписание</a></li>
                 <li><a href="/course_lobby" class="nav-link">Курсы</a></li>
-                <li><a href="/journal_lobby" class="nav-link">Журналы</a></li>
+                <li><a href="/journal_lobby" class="nav-link active">Журналы</a></li>
             </ul>
         </nav>
         <div class="user-actions">
-            <a th:if="${user_name == null}" href="/login" class="btn-login">Вход</a>
-            <div th:if="${user_name != null}" class="user-profile">
-                <span class="user-greeting" th:text="${user_name}"></span>
+            <a th:if="${profile == null}" href="/login" class="btn-login">Вход</a>
+            <div th:if="${profile != null}" class="user-profile">
+                <span class="user-greeting" th:text="${profile.full_name[0]}"></span>
                 <a href="/profile" class="profile-link">
                     <img src="/images/user.png" alt="Профиль" class="user-avatar">
                 </a>
@@ -37,13 +38,22 @@
 </header>
 
 <main class="main-content">
-    <div class="news-container-wide">
-        <div class="news-container-standalone">
-            <div class="article-title-container">
-                <h1 class="article-title" th:text="${article.title}"></h1>
+    <h1 class="page-title">Журналы</h1>
+
+    <div class="journal-container-student">
+        <a class="journal" th:each="journal : ${journals}" th:href="@{/journal/{id}(id=${journal.id})}">
+            <div class="journal-info" style="background: var(--bg-light);">
+                <p class="journal-type-lecture" th:if="${journal.type} == 'Лекция'">ЛЕК</p>
+                <p class="journal-type-seminar" th:if="${journal.type} == 'Практика'">ПР</p>
+                <p class="journal-type-lab" th:if="${journal.type} == 'Лабораторная'">ЛАБ</p>
+                <p class="journal-title" th:text="${journal.title}"></p>
             </div>
-            <pre class="article-text-standalone" th:text="${article_text}"></pre>
-        </div>
+
+            <div class="journal-info">
+                <p class="journal-hours" th:text="'Часы: ' + ${journal.hours_current} + '/' + ${journal.hours_total}"></p>
+                <p class="journal-teacher" th:text="${teacher_name}"></p>
+            </div>
+        </a>
     </div>
 </main>
 
