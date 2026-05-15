@@ -41,7 +41,7 @@
     <h1 class="page-title">Журналы</h1>
 
     <div class="journal-container-student">
-        <a class="journal" th:each="journal : ${journals}" th:href="@{/journal/{id}(id=${journal.id})}">
+        <a class="journal" th:each="i : ${journal_numbers}" th:href="@{/journal/{id}(id=${journal.id})}" th:with="journal = ${journals.get(i)}">
             <div class="journal-info" style="background: var(--bg-light);">
                 <p class="journal-type-lecture" th:if="${journal.type} == 'Лекция'">ЛЕК</p>
                 <p class="journal-type-seminar" th:if="${journal.type} == 'Практика'">ПР</p>
@@ -51,7 +51,7 @@
 
             <div class="journal-info">
                 <p class="journal-hours" th:text="'Часы: ' + ${journal.hours_current} + '/' + ${journal.hours_total}"></p>
-                <p class="journal-teacher" th:text="${teacher_name}"></p>
+                <p class="journal-teacher" th:text="${teacher_names[i]}"></p>
             </div>
         </a>
     </div>

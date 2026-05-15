@@ -6,23 +6,24 @@
     const five = document.getElementById('five_grade').innerText;
 
     let data = [
-        { name: "Удовл.", value: three, color: "#943636" },
+        { name: "Удовлетворительно", value: three, color: "#943636" },
         { name: "Хорошо", value: four, color: "#499BED" },
         { name: "Отлично", value: five, color: "#739842" },
     ];
 
     const canvas = document.getElementById('pieCanvas');
     const ctx = canvas.getContext('2d');
-    let activeIndex = null;      // индекс подсвеченного сектора
-    let animationFrame = null;    // не используется для анимации перерисовки, просто флаг
-
-    // функции для отрисовки с учётом активного индекса (отодвигаем или легкая тень)
-    // но для эффекта выдвижения используем сдвиг? сделаем просто увеличение яркости/обводку и легкий offset?
-    // реализуем элегантный эффект: активный сектор получает белую обводку + легкое "выезжание" по радиусу на 6px
-    // метод рисования: рисуем сектора с возможностью "explode" для активного индекса
+    let activeIndex = null;
+    let animationFrame = null;
 
     function getTotal() {
-        return data.reduce((sum, item) => sum + Math.max(0, item.value), 0);
+        let threes = data[0].value * 3;
+        let fours = data[1].value * 4;
+        let fives = data[2].value * 5;
+
+        let total = threes + fours + fives;
+
+        return parseFloat(total / data.reduce((sum, item) => sum + Math.max(0, item.value), 0));
     }
 
     // обновить текст в центре
@@ -145,8 +146,8 @@
             li.setAttribute('data-index', idx);
             // подсветка фона если активный
             if (activeIndex === idx) {
-                li.style.backgroundColor = "#ffe6d5";
-                li.style.borderLeft = "3px solid #ff9940";
+                li.style.backgroundColor = "rgba(161, 198, 246, 0.4)";
+                li.style.borderLeft = "3px solid #499BED";
             } else {
                 li.style.backgroundColor = "rgba(245, 248, 250, 0.7)";
                 li.style.borderLeft = "none";

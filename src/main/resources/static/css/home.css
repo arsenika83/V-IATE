@@ -336,6 +336,7 @@ canvas {
     text-transform: uppercase;
     color: #5b7e9c;
     letter-spacing: 1px;
+    text-align: center;
 }
 
 /* легенда + контролы */
@@ -399,7 +400,7 @@ canvas {
     background: #e2eaf1;
     padding: 4px 10px;
     border-radius: 40px;
-    font-size: 0.85rem;
+    font-size: large;
     color: #004070;
 }
 .legend-percent {

@@ -88,7 +88,7 @@
                             <canvas id="pieCanvas" style="width:100%; height:100%; display: block;"></canvas>
                             <div class="pie-center">
                                 <span id="totalValue" th:text="${grades[3]}"></span>
-                                <span>Всего</span>
+                                <span>Средний балл</span>
                             </div>
                         </div>
                     </div>
@@ -136,9 +136,9 @@
 </main>
 
 <div th:if="${user_name != null}">
-    <p id="three_grade" th:text="${grades[0]}"></p>
-    <p id="four_grade" th:text="${grades[1]}"></p>
-    <p id="five_grade" th:text="${grades[2]}"></p>
+    <p id="three_grade" th:text="${grades[0]}" style="height: 1px; font-size: 1px;"></p>
+    <p id="four_grade" th:text="${grades[1]}"  style="height: 1px; font-size: 1px;"></p>
+    <p id="five_grade" th:text="${grades[2]}"  style="height: 1px; font-size: 1px;"></p>
 </div>
 
 <footer class="site-footer">

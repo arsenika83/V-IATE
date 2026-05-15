@@ -4,16 +4,14 @@ import com.AVASPP.VIATE.entity.Group;
 import com.AVASPP.VIATE.entity.Journal;
 import com.AVASPP.VIATE.entity.Student;
 import com.AVASPP.VIATE.entity.User;
-import com.AVASPP.VIATE.service.GroupService;
-import com.AVASPP.VIATE.service.JournalService;
-import com.AVASPP.VIATE.service.StudentService;
-import com.AVASPP.VIATE.service.StudentStatisticService;
+import com.AVASPP.VIATE.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,6 +28,9 @@ public class JournalController {
     @Autowired
     private StudentStatisticService studentStatisticService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/journal_lobby")
     public String journal_lobby(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
@@ -43,14 +44,22 @@ public class JournalController {
                 Group group = groupService.findById(student.getGroup_id());
 
                 List<Journal> journals = journalService.findByGroupId(group.getId());
+                int[] journal_numbers = new int[journals.size()];
 
-                String teacher_name = "Перетятько Л.О.";
+                List<String> teacher_names = new ArrayList<>();
+                for (int i = 0; i < journals.size(); i++) {
+                    journal_numbers[i] = i;
+                    String[] fullname = userService.findById(journals.get(i).getTeacher_id()).getFull_name();
+
+                    teacher_names.add(fullname[0] + " " + fullname[1].charAt(0)+ ". " + fullname[2].charAt(0) + ".");
+                }
 
 
                 model.addAttribute("profile", student);
                 model.addAttribute("group", group);
                 model.addAttribute("journals", journals);
-                model.addAttribute("teacher_name", teacher_name);
+                model.addAttribute("journal_numbers", journal_numbers);
+                model.addAttribute("teacher_names", teacher_names);
             }
             else if(role.contains("TEACHER")) {
 
