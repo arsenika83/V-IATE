@@ -32,7 +32,7 @@ public class ScheduleController {
 
         User user = (User) session.getAttribute("user");
         if(user != null) {
-            model.addAttribute("user_name", user.getFull_name()[0]);
+            model.addAttribute("user_name", user.getFull_name()[1]);
             model.addAttribute("login", user.getLogin());
 
             if(user.getRole().contains("STUDENT")) {
