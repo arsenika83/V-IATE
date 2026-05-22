@@ -30,4 +30,16 @@ public class StudentService {
         if(studentRepository.findById(user.getId()).isPresent()) return studentRepository.findById(user.getId()).get();
         else return studentRepository.save(new Student(user));
     }
+
+    public void addFavoriteGroup(long id, long group_id) {
+        studentRepository.addFavoriteGroup(id, group_id);
+    }
+
+    public void removeFavoriteGroup(long id, long group_id) {
+        studentRepository.removeFavoriteGroup(id, group_id);
+    }
+
+    public boolean isFavoriteGroup(long id, long group_id) {
+        return studentRepository.isFavoriteGroup(id, group_id) != null;
+    }
 }

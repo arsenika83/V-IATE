@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,6 @@ public class ScheduleController {
     @Autowired
     private GroupService groupService;
 
-
     @GetMapping("/group")
     public String getGroupList(HttpSession session, Model model) {
 
@@ -37,7 +38,15 @@ public class ScheduleController {
 
             if(user.getRole().contains("STUDENT")) {
                 Student student = studentService.findOrSaveStudent(user.getId());
-                model.addAttribute("current_user_group", groupService.findById(student.getGroup_id()));
+
+                Long[] favorite_group_ids = student.getFavorite_group_ids();
+                ArrayList<Group> favorite_groups = new ArrayList<>();
+                for (int i = 0; i < favorite_group_ids.length; i++) {
+                    favorite_groups.add(groupService.findById(favorite_group_ids[i]));
+                }
+                model.addAttribute("favorite_groups", favorite_groups);
+                model.addAttribute("student_service", studentService);
+                model.addAttribute("user", user);
             }
         }
 
@@ -64,6 +73,29 @@ public class ScheduleController {
         return "group";
     }
 
+    @GetMapping("/add_favorite_group/{group_id}")
+    public String addFavoriteGroup(HttpSession session, @PathVariable Long group_id) {
+        User user = (User) session.getAttribute("user");
+        if(user != null) {
+            if(studentService.isFavoriteGroup(user.getId(), group_id)) {
+                return "redirect:/group";
+            }
+            studentService.addFavoriteGroup(user.getId(), group_id);
+        }
+
+        return "redirect:/group";
+    }
+
+    @GetMapping("/remove_favorite_group/{group_id}")
+    public String removeFavoriteGroup(HttpSession session, @PathVariable Long group_id) {
+        User user = (User) session.getAttribute("user");
+        if(user != null) {
+            studentService.removeFavoriteGroup(user.getId(), group_id);
+        }
+
+        return "redirect:/group";
+    }
+
     @GetMapping("/schedule/{group_id}")
     public String getSchedule(HttpSession session, Model model, @PathVariable Long group_id) {
         Schedule schedule = scheduleService.save(group_id);
@@ -82,7 +114,6 @@ public class ScheduleController {
         }
 
         int dayOfWeek = scheduleService.getDayOfWeek();
-        System.out.println(dayOfWeek + " DAY OF WEEK ==========================================================");
         model.addAttribute("day_of_week", dayOfWeek);
 
         long[] monday = schedule.getMonday();
@@ -135,4 +166,5 @@ public class ScheduleController {
 
         return "schedule";
     }
+
 }

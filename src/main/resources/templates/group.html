@@ -39,55 +39,36 @@
 
 <main class="main-content">
 
-    <!--
-    <div class="search-container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="search-input-wrapper">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text"
-                           id="searchInput"
-                           class="form-control search-input"
-                           placeholder="Поиск..."
-                           autocomplete="off">
-                    <i class="fas fa-times-circle clear-search" id="clearSearch"></i>
-                </div>
-
-                <div class="mt-3" id="quickFilters">
-                    <span class="search-tag" data-filter="course_1">Первый курс</span>
-                </div>
-
-                <div class="search-stats" id="searchStats">
-                    <span id="resultCount"></span>
-                    <span id="searchQuery"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
-
     <div class="groups-page">
         <div th:if="${user_name != null}" class="groups-align">
             <h2 class="course-year">Моё расписание</h2>
-            <div class="flex-buttons">
-                <a th:class="button-href" th:href="@{/schedule/{id}(id=${current_user_group.id})}" th:text="${current_user_group.name}"></a>
+            <div class="buttons-group">
+                <div class="buttons-align-two" th:each="fav_group : ${favorite_groups}">
+                    <a class="button-href-auth" th:href="@{/schedule/{id}(id=${fav_group.id})}" th:text="${fav_group.name}"></a>
+                    <a class="button-fav" th:href="@{/remove_favorite_group/{id}(id=${fav_group.id})}">
+                        ❌
+                    </a>
+                </div>
             </div>
         </div>
 
         <div th:each="course : ${courses}" class="groups-align">
             <h2 class="course-year" th:text="${course} + ' КУРС'"></h2>
             <div class="buttons-group">
-                <a th:each="group : ${groups_list.get(course-1)}" th:if="${group.id != -1}" th:class="button-href" th:href="@{/schedule/{id}(id=${group.id})}" th:text="${group.name}"></a>
+                <div class="buttons-align-two" th:each="group : ${groups_list.get(course-1)}" >
+                    <a th:if="${user_name == null}" th:class="button-href" th:href="@{/schedule/{id}(id=${group.id})}" th:text="${group.name}"></a>
+                    <a th:if="${user_name != null}" th:class="button-href-auth" th:href="@{/schedule/{id}(id=${group.id})}" th:text="${group.name}"></a>
+                    <a th:if="${user_name != null}" th:class="button-fav" th:href="@{/add_favorite_group/{id}(id=${group.id})}">
+                        <p th:if="${student_service.isFavoriteGroup(23, group.id) != true}">☆</p>
+                        <p th:if="${student_service.isFavoriteGroup(23, group.id) == true}" style="color: var(--accent-cyan);
+    -webkit-text-stroke: 2px var(--accent-cyan);">★</p>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
 
-    <div id="noResults" class="no-results">
-        <i class="fas fa-search fa-3x mb-3"></i>
-        <h4>Ничего не найдено</h4>
-        <p class="text-muted">Попробуйте изменить критерии поиска</p>
-    </div>
 </main>
 
 <footer class="site-footer">
@@ -101,6 +82,5 @@
     </div>
 </footer>
 
-<script src="/js/search_group.js"></script>
 </body>
 </html>

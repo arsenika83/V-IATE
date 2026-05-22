@@ -42,9 +42,18 @@
     justify-content: center;
     gap: 0.75rem;
     grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.button-href {
+.buttons-align-two {
+    flex: 0 0 25%;
+    display: flex;
+    margin-right: 2%;
+}
+
+.button-href, .button-href-auth {
+    width: 100%;
     padding: 0.6rem 1.2rem;
     background: var(--bg-light);
     border: 1px solid var(--accent-cyan);
@@ -54,12 +63,33 @@
     transition: all 0.2s ease;
     white-space: nowrap;
     text-align: center;
+    align-self: center;
 }
 
-.button-href:hover {
+.button-href-auth {
+    width: 80%;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    align-self: start;
+}
+
+.button-fav, .button-fav-filled {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--accent-cyan);
+    border-radius: 15px;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    text-align: center;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-left: none;
+}
+
+.button-href:hover, .button-href-auth:hover, .button-fav:hover {
     background: rgba(0, 229, 255, 0.08);
     border-color: var(--accent-cyan);
-    transform: translateY(-2px);
 }
 
 /* Расписание (schedule) */

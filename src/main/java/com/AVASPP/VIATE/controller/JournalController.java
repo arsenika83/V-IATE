@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,25 +76,25 @@ public class JournalController {
     }
 
     @GetMapping("/journal/{id}")
-    public String journal(HttpSession session, Model model) {
+    public String journal(HttpSession session, Model model, @PathVariable long id) {
         User user = (User) session.getAttribute("user");
 
         if(user != null) {
-            Long id = user.getId();
+            Long user_id = user.getId();
             String role = user.getRole();
 
             if(role.contains("STUDENT")) {
-                Student student = studentService.findOrSaveStudent(id);
+                Student student = studentService.findOrSaveStudent(user_id);
                 Group group = groupService.findById(student.getGroup_id());
 
-                List<Journal> journals = journalService.findByGroupId(group.getId());
+                Journal journal = journalService.findById(id);
 
-                String teacher_name = "Перетятько Л.О.";
-
+                int hour_count = journal.getHours_total();
+                String title = journal.getTitle();
+                String type = journal.getType();
                 model.addAttribute("profile", student);
-                model.addAttribute("group", group);
-                model.addAttribute("journals", journals);
-                model.addAttribute("teacher_name", teacher_name);
+                model.addAttribute("title", title);
+                model.addAttribute("type", type);
             }
             else if(role.contains("TEACHER")) {
 
@@ -101,7 +102,7 @@ public class JournalController {
             else if(role.contains("ADMIN")) {
 
             }
-            return "journal_lobby";
+            return "journal";
         }
         else {
             return "redirect:/login";

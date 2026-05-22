@@ -33,12 +33,6 @@ public class GroupService {
         year -= (course - offset);
 
         List<Group> group = (List<Group>) groupRepository.findAllByCourse(year);
-        int leftover = 4 - group.size() % 4;
-        if(leftover == 4) leftover = 0;
-
-        for (int i = 0; i < leftover; i++) {
-            group.add(findById(-1));
-        }
 
         return group;
     }

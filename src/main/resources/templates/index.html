@@ -64,16 +64,61 @@
         </aside>
 
         <section class="news-feed">
+
+
             <div th:if="${user_name != null}">
                 <div class="section-header">
                     <h2 class="section-title">Моё расписание</h2>
                     <div class="section-decor"></div>
                 </div>
                 <div  class="groups-align" style="border: none; width: 100% ">
-                    <div class="flex-buttons">
-                        <a th:class="button-href" th:href="@{/schedule/{id}(id=${group_id})}" th:text="${group_name}"></a>
+                    <div class="buttons-group">
+                        <div class="buttons-align-two" th:each="fav_group : ${favorite_groups}">
+                            <a class="button-href" th:href="@{/schedule/{id}(id=${fav_group.id})}" th:text="${fav_group.name}"></a>
+                        </div>
                     </div>
                 </div>
+                <hr>
+
+                <div class="empty-check" th:if="${today_lessons.length > 0}" style="width: 100%;">
+                    <h3 class="day-of-week-today" th:text="${today_lessons[0].day} + ' (сегодня)'"></h3>
+
+                    <div class="day-of-week">
+
+                        <div class="week-odd">
+                            <h4>Нечётная неделя</h4>
+                            <div class="lesson" th:each="lesson : ${today_lessons}" th:if="${lesson.week == 'Нечётная неделя' or lesson.week == 'Еженедельно'}">
+                                <div class="container-type-name">
+                                    <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
+                                    <div class="lesson-name" th:text="${lesson.name}"></div>
+                                </div>
+                                <div class="lesson-week" th:text="${lesson.week}"></div>
+                                <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
+                                <div class="container-time-teacher">
+                                    <div class="lesson-time" th:text="${lesson.time}"></div>
+                                    <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="week-even">
+                            <h4>Чётная неделя</h4>
+                            <div class="lesson" th:each="lesson : ${today_lessons}" th:if="${lesson.week == 'Чётная неделя' or lesson.week == 'Еженедельно'}">
+                                <div class="container-type-name">
+                                    <div class="lesson-type" th:text="'(' + ${lesson.type} + ')'"></div>
+                                    <div class="lesson-name" th:text="${lesson.name}"></div>
+                                </div>
+                                <div class="lesson-week" th:text="${lesson.week}"></div>
+                                <div class="lesson-classroom" th:text="${lesson.classroom}"></div>
+                                <div class="container-time-teacher">
+                                    <div class="lesson-time" th:text="${lesson.time}"></div>
+                                    <div class="lesson-teacher" th:text="${lesson.teacher_name}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <hr>
             </div>
 
@@ -93,7 +138,6 @@
                         </div>
                     </div>
 
-                    <!-- панель легенды и управления -->
                     <div class="legend-panel">
                         <div class="legend-title">Оценки</div>
                         <ul class="legend-list" id="legendList"></ul>
